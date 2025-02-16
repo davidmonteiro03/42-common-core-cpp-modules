@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:31:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 10:24:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 22:46:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int main(void)
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
 	std::cout << Fixed::max(a, b) << std::endl;
-	return (0);
+	return 0;
 }

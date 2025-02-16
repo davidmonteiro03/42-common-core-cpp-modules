@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:25:24 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 20:18:57 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:24:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-int	main(void)
+int main(void)
 {
-	const Animal* animal = new Animal();
-	const Animal* dog = new Dog();
-	const Animal* cat = new Cat();
+	const Animal *animal = new Animal();
+	const Animal *dog = new Dog();
+	const Animal *cat = new Cat();
 
 	std::cout << cat->getType() << std::endl;
 	std::cout << dog->getType() << std::endl;
@@ -32,8 +32,8 @@ int	main(void)
 	delete dog;
 	delete animal;
 
-	const WrongAnimal* wronganimal = new WrongAnimal();
-	const WrongAnimal* wrongcat = new WrongCat();
+	const WrongAnimal *wronganimal = new WrongAnimal();
+	const WrongAnimal *wrongcat = new WrongCat();
 
 	std::cout << wrongcat->getType() << std::endl;
 	std::cout << wronganimal->getType() << std::endl;
@@ -44,5 +44,5 @@ int	main(void)
 	delete wrongcat;
 	delete wronganimal;
 
-	return (0);
+	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 20:03:28 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/05 21:47:53 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 22:28:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ int main(void)
 		club.setType("some other type of club");
 		jim.attack();
 	}
-	return (0);
+	return 0;
 }

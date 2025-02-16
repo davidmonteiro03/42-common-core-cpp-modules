@@ -6,28 +6,26 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:25:17 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 20:44:30 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:36:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AANIMAL_HPP
-# define AANIMAL_HPP
+#pragma once
 
-# include "Brain.hpp"
+#include "Brain.hpp"
 
 class AAnimal
 {
-	protected:
-		std::string	_type;
-	public:
-		AAnimal(void);
-		AAnimal(std::string type);
-		virtual	~AAnimal();
-		AAnimal(const AAnimal &ref);
-		AAnimal& operator=(const AAnimal &rhs);
+protected:
+	std::string _type;
 
-		virtual void	makeSound(void) const = 0;
-		std::string		getType(void) const;
+public:
+	AAnimal(void);
+	AAnimal(std::string);
+	virtual ~AAnimal();
+	AAnimal(const AAnimal &);
+	AAnimal &operator=(const AAnimal &);
+
+	virtual void makeSound(void) const = 0;
+	std::string getType(void) const;
 };
-
-#endif

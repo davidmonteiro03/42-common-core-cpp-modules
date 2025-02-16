@@ -6,24 +6,22 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:09 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 20:17:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:31:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#pragma once
 
-# include "Animal.hpp"
+#include "Animal.hpp"
 
 class Cat : public Animal
 {
-	private:
-		Brain	*_brain;
-	public:
-		Cat(void);
-		~Cat();
+private:
+	Brain *_brain;
 
-		void	makeSound(void) const;
+public:
+	Cat(void);
+	~Cat();
+
+	void makeSound(void) const;
 };
-
-#endif

@@ -6,16 +6,16 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 08:48:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/06 09:30:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 22:29:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-int	main(void)
+int main(void)
 {
-	std::string	level;
-	Harl	Harl;
+	std::string level;
+	Harl Harl;
 
 	while (1)
 	{
@@ -24,9 +24,9 @@ int	main(void)
 		if (std::cin.eof())
 		{
 			std::cout << std::endl;
-			break ;
+			break;
 		}
 		Harl.complain(level);
 	}
-	return (0);
+	return 0;
 }

@@ -6,13 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:50:13 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/05 08:19:38 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 21:38:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook_utils.hpp"
 
-void	print_trunc(std::string str)
+void print_trunc(std::string str)
 {
 	if (str.size() > 10)
 	{
@@ -29,10 +29,10 @@ void	print_trunc(std::string str)
 	}
 }
 
-int	search_contact_util(Contact contacts[8])
+int search_contact_util(Contact contacts[8])
 {
-	char	c;
-	int		i;
+	char c;
+	int i;
 
 	if (!contacts[0].get_first_name().size())
 		return (0);

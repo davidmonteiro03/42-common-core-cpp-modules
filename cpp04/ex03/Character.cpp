@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 08:37:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/22 09:45:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:52:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ Character::Character(std::string name) : _name(name)
 		_inventory[i] = NULL;
 }
 
-Character::Character(const Character& ref) : _name(ref._name)
+Character::Character(const Character &ref) : _name(ref._name)
 {
 	for (int i = 0; i < 4; i++)
 		_inventory[i] = NULL;
 }
 
-Character& Character::operator=(const Character& rhs)
+Character &Character::operator=(const Character &rhs)
 {
 	if (this != &rhs)
 	{
@@ -39,7 +39,7 @@ Character& Character::operator=(const Character& rhs)
 				_inventory[i] = NULL;
 		}
 	}
-	return (*this);
+	return *this;
 }
 
 Character::~Character()
@@ -49,21 +49,18 @@ Character::~Character()
 			delete _inventory[i];
 }
 
-std::string const & Character::getName() const
-{
-	return (_name);
-}
+std::string const &Character::getName() const { return _name; }
 
-void Character::equip(AMateria* m)
+void Character::equip(AMateria *m)
 {
 	if (!m)
-		return ;
+		return;
 	for (int i = 0; i < 4; i++)
 	{
 		if (!_inventory[i])
 		{
 			_inventory[i] = m;
-			return ;
+			return;
 		}
 	}
 }
@@ -71,17 +68,17 @@ void Character::equip(AMateria* m)
 void Character::unequip(int idx)
 {
 	if (idx < 0 || idx > 3)
-		return ;
+		return;
 	if (!_inventory[idx])
-		return ;
+		return;
 	_inventory[idx] = NULL;
 }
 
-void Character::use(int idx, ICharacter& target)
+void Character::use(int idx, ICharacter &target)
 {
 	if (idx < 0 || idx > 3)
-		return ;
+		return;
 	if (!_inventory[idx])
-		return ;
+		return;
 	_inventory[idx]->use(target);
 }

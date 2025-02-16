@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:48:46 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/22 18:53:09 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 00:16:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static void separator(bool lines)
 		std::cout << "=====================================================";
 		std::cout << "=====================================================";
 	}
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl
+			  << std::endl;
 }
 
 void default_2_wrong(void)
@@ -30,12 +31,14 @@ void default_2_wrong(void)
 	{
 		std::cout << "TEST_DEFAULT_CONSTRUCTOR_2->wrong_high => ";
 		Bureaucrat wrong_high("wrong_high", 0);
-		std::cout << "Success!" << std::endl << std::endl;
+		std::cout << "Success!" << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: OK!";
 	}
 	separator(false);
@@ -45,12 +48,14 @@ void default_2_wrong(void)
 	{
 		std::cout << "TEST_DEFAULT_CONSTRUCTOR_2->wrong_low => ";
 		Bureaucrat wrong_low("wrong_low", 151);
-		std::cout << "Success!" << std::endl << std::endl;
+		std::cout << "Success!" << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: OK!";
 	}
 	separator(false);
@@ -64,12 +69,14 @@ void default_2_right(void)
 	{
 		std::cout << "TEST_DEFAULT_CONSTRUCTOR_2->right_high => ";
 		Bureaucrat right_high("right_high", 1);
-		std::cout << "Success!" << std::endl << std::endl;
+		std::cout << "Success!" << std::endl
+				  << std::endl;
 		std::cout << "Result: OK!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
 	separator(false);
@@ -79,12 +86,14 @@ void default_2_right(void)
 	{
 		std::cout << "TEST_DEFAULT_CONSTRUCTOR_2->right_low => ";
 		Bureaucrat right_low("right_low", 150);
-		std::cout << "Success!" << std::endl << std::endl;
+		std::cout << "Success!" << std::endl
+				  << std::endl;
 		std::cout << "Result: OK!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
 	separator(false);
@@ -99,16 +108,18 @@ void copy(void)
 	{
 		std::cout << "TEST_COPY_CONSTRUCTOR->copy_1 => ";
 		Bureaucrat copy_1(base);
-		std::cout << "Success! " << std::endl << std::endl;
-		if (copy_1.getName() != base.getName() || \
+		std::cout << "Success! " << std::endl
+				  << std::endl;
+		if (copy_1.getName() != base.getName() ||
 			copy_1.getGrade() != base.getGrade())
 			std::cout << "Result: KO!";
 		else
 			std::cout << "Result: OK!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
 	separator(false);
@@ -124,16 +135,18 @@ void assignment(void)
 	{
 		std::cout << "TEST_ASSIGNMENT_OVERLOAD->assignment_1 => ";
 		assignment_1 = base;
-		std::cout << "Success! " << std::endl << std::endl;
-		if (assignment_1.getName() == base.getName() || \
+		std::cout << "Success! " << std::endl
+				  << std::endl;
+		if (assignment_1.getName() == base.getName() ||
 			assignment_1.getGrade() != base.getGrade())
 			std::cout << "Result: KO!";
 		else
 			std::cout << "Result: OK!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
 	separator(false);
@@ -144,16 +157,18 @@ void assignment(void)
 	{
 		std::cout << "TEST_ASSIGNMENT_OVERLOAD->assignment_2 => ";
 		base = assignment_2;
-		std::cout << "Success! " << std::endl << std::endl;
-		if (base.getName() == assignment_2.getName() || \
+		std::cout << "Success! " << std::endl
+				  << std::endl;
+		if (base.getName() == assignment_2.getName() ||
 			base.getGrade() != assignment_2.getGrade())
 			std::cout << "Result: KO!";
 		else
 			std::cout << "Result: OK!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
 	separator(false);
@@ -168,12 +183,14 @@ void high_operations(void)
 	{
 		std::cout << "TEST_OPERATIONS->high_operations->high_1->incrementGrade() => ";
 		high_1.incrementGrade();
-		std::cout << "Success! " << std::endl << std::endl;
+		std::cout << "Success! " << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: OK!";
 	}
 	separator(false);
@@ -182,15 +199,17 @@ void high_operations(void)
 		std::cout << "TEST_OPERATIONS->high_operations->high_1->decrementGrade() => ";
 		int old = high_1.getGrade();
 		high_1.decrementGrade();
-		std::cout << "Success! " << std::endl << std::endl;
+		std::cout << "Success! " << std::endl
+				  << std::endl;
 		if (high_1.getGrade() == old + 1)
 			std::cout << "Result: OK!";
 		else
 			std::cout << "Result: KO!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
 	separator(false);
@@ -205,12 +224,14 @@ void low_operations(void)
 	{
 		std::cout << "TEST_OPERATIONS->low_operations->low_1->decrementGrade() => ";
 		low_1.decrementGrade();
-		std::cout << "Success! " << std::endl << std::endl;
+		std::cout << "Success! " << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: OK!";
 	}
 	separator(false);
@@ -219,15 +240,17 @@ void low_operations(void)
 		std::cout << "TEST_OPERATIONS->low_operations->low_1->incrementGrade() => ";
 		int old = low_1.getGrade();
 		low_1.incrementGrade();
-		std::cout << "Success! " << std::endl << std::endl;
+		std::cout << "Success! " << std::endl
+				  << std::endl;
 		if (low_1.getGrade() == old - 1)
 			std::cout << "Result: OK!";
 		else
 			std::cout << "Result: KO!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
 	separator(false);
@@ -240,18 +263,20 @@ void _default(void)
 	{
 		std::cout << "TEST_DEFAULT_CONSTRUCTOR->_default->test => ";
 		Bureaucrat test;
-		std::cout << "Success! " << std::endl << std::endl;
+		std::cout << "Success! " << std::endl
+				  << std::endl;
 		std::cout << "Result: OK!";
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Error! " << e.what() << std::endl
+				  << std::endl;
 		std::cout << "Result: KO!";
 	}
 	separator(false);
 }
 
-int	main(void)
+int main(void)
 {
 	// TEST_DEFAULT_CONSTRUCTOR
 	_default();
@@ -265,5 +290,5 @@ int	main(void)
 	// TEST_OPERATIONS
 	low_operations();
 	high_operations();
-	return (0);
+	return 0;
 }

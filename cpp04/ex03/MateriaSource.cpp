@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 08:57:00 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/22 09:46:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 00:00:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,29 @@ MateriaSource::~MateriaSource()
 			delete _materias[i];
 }
 
-void MateriaSource::learnMateria(AMateria* m)
+void MateriaSource::learnMateria(AMateria *m)
 {
 	if (!m)
-		return ;
+		return;
 	for (int i = 0; i < 4; i++)
 	{
 		if (!_materias[i])
 		{
 			_materias[i] = m;
-			return ;
+			return;
 		}
 	}
 }
 
-AMateria* MateriaSource::createMateria(std::string const & type)
+AMateria *MateriaSource::createMateria(std::string const &type)
 {
-	AMateria* tmp = NULL;
+	AMateria *tmp = NULL;
 	for (int i = 0; i < 4; i++)
 	{
 		if (_materias[i] && _materias[i]->getType() == type)
 		{
 			tmp = _materias[i];
-			break ;
+			break;
 		}
 	}
 	return (tmp);

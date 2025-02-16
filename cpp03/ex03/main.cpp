@@ -6,13 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/18 21:27:47 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:16:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-int	main(void)
+int main(void)
 {
 	DiamondTrap diamond("diamond1");
 
@@ -22,5 +22,5 @@ int	main(void)
 	diamond.guardGate();
 	diamond.highFivesGuys();
 	diamond.whoAmI();
-	return (0);
+	return 0;
 }

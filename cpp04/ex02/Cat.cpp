@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:08:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 20:46:44 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:37:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,10 @@ Cat::Cat(void) : AAnimal("Cat")
 	this->_brain = new Brain();
 }
 
-Cat::~Cat(void)
+Cat::~Cat()
 {
 	delete this->_brain;
 	std::cout << this->_type << " destroyed" << std::endl;
 }
 
-void	Cat::makeSound(void) const
-{
-	std::cout << "AAnimal " << this->getType();
-	std::cout << " said miau miau" << std::endl;
-}
+void Cat::makeSound(void) const { std::cout << "AAnimal " << this->getType() << " said miau miau" << std::endl; }

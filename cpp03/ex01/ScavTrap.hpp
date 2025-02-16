@@ -6,27 +6,24 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:03:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/18 21:03:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:03:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#pragma once
 
-# include "ClapTrap.hpp"
+#include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap
 {
-	public:
-		// Orthodox Canonical Form
-		ScavTrap(std::string name);
-		ScavTrap(const ScavTrap& ref);
-		ScavTrap& operator=(const ScavTrap& rhs);
-		~ScavTrap();
+public:
+	// Orthodox Canonical Form
+	ScavTrap(std::string);
+	ScavTrap(const ScavTrap &);
+	ScavTrap &operator=(const ScavTrap &);
+	~ScavTrap();
 
-		// member functions
-		void attack(const std::string& target);
-		void guardGate();
+	// member functions
+	void attack(const std::string &);
+	void guardGate();
 };
-
-#endif

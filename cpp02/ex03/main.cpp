@@ -6,19 +6,18 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:31:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 13:55:02 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 22:52:15 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-# define BGRN "\033[1;32m"
-# define BRED "\033[1;31m"
-# define BCYN "\033[1;36m"
-# define RESET "\033[0m"
+#define BGRN "\033[1;32m"
+#define BRED "\033[1;31m"
+#define BCYN "\033[1;36m"
+#define RESET "\033[0m"
 
-void	test(Point a, Point b, Point c, Point point, \
-			int const num, bool result)
+void test(Point a, Point b, Point c, Point point, int const num, bool result)
 {
 	std::cout << BCYN "Test " << num << RESET ": ";
 	if (bsp(a, b, c, point) == result)
@@ -27,7 +26,7 @@ void	test(Point a, Point b, Point c, Point point, \
 		std::cout << BRED "KO" RESET << std::endl;
 }
 
-int	main(void)
+int main(void)
 {
 	test(Point(1, 3), Point(5, 2), Point(3, 6), Point(4, 4), 1, false);
 	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(3, 2), 2, false);
@@ -54,5 +53,5 @@ int	main(void)
 	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(4.5f, 4), 23, false);
 	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(3.5f, 3.5f), 24, false);
 	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(3.5f, 4.5f), 25, false);
-	return (0);
+	return 0;
 }

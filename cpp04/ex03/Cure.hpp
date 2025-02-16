@@ -6,22 +6,19 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 08:28:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/22 08:28:58 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:53:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#pragma once
 
-# include "AMateria.hpp"
+#include "AMateria.hpp"
 
 class Cure : public AMateria
 {
-	public:
-		Cure();
-		~Cure();
-		AMateria* clone() const;
-		void use(ICharacter& target);
+public:
+	Cure();
+	~Cure();
+	AMateria *clone() const;
+	void use(ICharacter &);
 };
-
-#endif

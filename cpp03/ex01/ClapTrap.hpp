@@ -6,39 +6,37 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 19:07:52 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/18 20:06:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:01:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#pragma once
 
-# include <iostream>
+#include <iostream>
 
 class ClapTrap
 {
-	protected:
-		std::string _name;
-		int _hitPoints;
-		int _energyPoints;
-		int _attackDamage;
-	public:
-		// Orthodox Canonical Form
-		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap& ref);
-		ClapTrap& operator=(const ClapTrap& rhs);
-		~ClapTrap();
+protected:
+	std::string _name;
+	int _hitPoints;
+	int _energyPoints;
+	int _attackDamage;
 
-		// getters
-		std::string getName(void) const;
-		int getHitPoints(void) const;
-		int getEnergyPoints(void) const;
-		int getAttackDamage(void) const;
+public:
+	// Orthodox Canonical Form
+	ClapTrap(std::string);
+	ClapTrap(const ClapTrap &);
+	ClapTrap &operator=(const ClapTrap &);
+	~ClapTrap();
 
-		// member functions
-		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+	// getters
+	std::string getName(void) const;
+	int getHitPoints(void) const;
+	int getEnergyPoints(void) const;
+	int getAttackDamage(void) const;
+
+	// member functions
+	void attack(const std::string &);
+	void takeDamage(unsigned int);
+	void beRepaired(unsigned int);
 };
-
-#endif

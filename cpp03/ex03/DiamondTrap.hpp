@@ -6,30 +6,28 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:50:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/18 21:10:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:14:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DIAMONDTRAP_HPP
-# define DIAMONDTRAP_HPP
+#pragma once
 
-# include "FragTrap.hpp"
-# include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
 class DiamondTrap : public ScavTrap, public FragTrap
 {
-	private:
-		std::string _name;
-	public:
-		// Orthodox Canonical Form
-		DiamondTrap(std::string name);
-		DiamondTrap(const DiamondTrap& ref);
-		DiamondTrap& operator=(const DiamondTrap& rhs);
-		~DiamondTrap();
+private:
+	std::string _name;
 
-		// member functions
-		void attack(const std::string& target);
-		void whoAmI();
+public:
+	// Orthodox Canonical Form
+	DiamondTrap(std::string);
+	DiamondTrap(const DiamondTrap &);
+	DiamondTrap &operator=(const DiamondTrap &);
+	~DiamondTrap();
+
+	// member functions
+	void attack(const std::string &);
+	void whoAmI();
 };
-
-#endif

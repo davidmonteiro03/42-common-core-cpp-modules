@@ -6,27 +6,24 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:03:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/18 21:06:05 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:16:15 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#pragma once
 
-# include "ClapTrap.hpp"
+#include "ClapTrap.hpp"
 
 class FragTrap : virtual public ClapTrap
 {
-	public:
-		// Orthodox Canonical Form
-		FragTrap(std::string name);
-		FragTrap(const FragTrap& ref);
-		FragTrap& operator=(const FragTrap& rhs);
-		~FragTrap();
+public:
+	// Orthodox Canonical Form
+	FragTrap(std::string);
+	FragTrap(const FragTrap &);
+	FragTrap &operator=(const FragTrap &);
+	~FragTrap();
 
-		// member functions
-		void attack(const std::string& target);
-		void highFivesGuys(void);
+	// member functions
+	void attack(const std::string &);
+	void highFivesGuys(void);
 };
-
-#endif

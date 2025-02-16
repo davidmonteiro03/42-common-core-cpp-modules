@@ -6,17 +6,17 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:38:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/05 20:11:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 21:58:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-int	main(void)
+int main(void)
 {
-	std::string	str = "HI THIS IS BRAIN";
-	std::string* stringPTR = &str;
-	std::string& stringREF = str;
+	std::string str = "HI THIS IS BRAIN";
+	std::string *stringPTR = &str;
+	std::string &stringREF = str;
 
 	std::cout << &str << std::endl;
 	std::cout << stringPTR << std::endl;
@@ -24,5 +24,5 @@ int	main(void)
 	std::cout << str << std::endl;
 	std::cout << *stringPTR << std::endl;
 	std::cout << stringREF << std::endl;
-	return (0);
+	return 0;
 }

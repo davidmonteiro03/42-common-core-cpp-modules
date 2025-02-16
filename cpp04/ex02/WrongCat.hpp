@@ -6,24 +6,20 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:09 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 19:59:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:49:55 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGCAT_HPP
-# define WRONGCAT_HPP
+#pragma once
 
-# include "WrongAnimal.hpp"
+#include "WrongAnimal.hpp"
 
 class WrongCat : public WrongAnimal
 {
-	private:
+private:
+public:
+	WrongCat(void);
+	~WrongCat();
 
-	public:
-		WrongCat(void);
-		~WrongCat();
-
-		void	makeSound(void) const;
+	void makeSound(void) const;
 };
-
-#endif

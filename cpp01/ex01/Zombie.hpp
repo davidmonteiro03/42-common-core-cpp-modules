@@ -6,28 +6,26 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:25:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/05 19:33:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 21:57:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#pragma once
 
 #include <iostream>
 #include <sstream>
 
 class Zombie
 {
-	private:
-		std::string	_name;
-	public:
-		Zombie(std::string name);
-		Zombie(void);
-		~Zombie(void);
-		void	set_name(std::string name);
-		void	announce(void);
+private:
+	std::string _name;
+
+public:
+	Zombie(std::string);
+	Zombie(void);
+	~Zombie();
+	void set_name(std::string);
+	void announce(void);
 };
 
-Zombie *zombieHorde(int N, std::string name);
-
-#endif
+Zombie *zombieHorde(int, std::string);

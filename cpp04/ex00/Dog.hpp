@@ -6,24 +6,20 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:06:09 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 19:08:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:23:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#pragma once
 
-# include "Animal.hpp"
+#include "Animal.hpp"
 
 class Dog : public Animal
 {
-	private:
+private:
+public:
+	Dog(void);
+	~Dog();
 
-	public:
-		Dog(void);
-		~Dog();
-
-		void	makeSound(void) const;
+	void makeSound(void) const;
 };
-
-#endif
