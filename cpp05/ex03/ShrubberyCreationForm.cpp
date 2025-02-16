@@ -6,50 +6,35 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:05:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 17:20:00 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 08:53:02 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : \
-	Form("default shrubbery", 145, 137), _target("default")
-{
-}
+ShrubberyCreationForm::ShrubberyCreationForm() : Form("default shrubbery", 145, 137), _target("default") {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : \
-	Form("shrubbery", 145, 137), _target(target)
-{
-}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : Form("shrubbery", 145, 137), _target(target) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : \
-	Form(copy.getName(), copy.getSignGrade(), \
-	copy.getExecGrade()), _target(copy.getTarget())
-{
-}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy) : Form(copy.getName(), copy.getSignGrade(), copy.getExecGrade()), _target(copy.getTarget()) {}
 
-ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
 {
 	if (this != &other)
 		_target = other.getTarget();
-	return (*this);
+	return *this;
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm()
-{
-}
+ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-std::string ShrubberyCreationForm::getTarget(void) const
-{
-	return (_target);
-}
+std::string ShrubberyCreationForm::getTarget(void) const { return _target; }
 
-void draw_tree(std::ofstream& file_out, const int execGrade, const int grade)
+void draw_tree(std::ofstream &file_out, const int execGrade, const int grade)
 {
 	int size = execGrade - grade + 4;
 	int rows = execGrade - grade + 2, columns = execGrade - grade + 5;
 	if (size <= 1 || rows <= 0 || columns <= 0)
-		return ;
+		return;
 	if (rows > 14)
 		rows = 14;
 	if (columns > 19)
@@ -120,7 +105,7 @@ void draw_tree(std::ofstream& file_out, const int execGrade, const int grade)
 	}
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	if (!getStatus())
 		throw Form::UnsignedFormException();
@@ -133,7 +118,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		if (!file_out.is_open())
 		{
 			std::cout << "Couldn't open file" << std::endl;
-			return ;
+			return;
 		}
 		draw_tree(file_out, getExecGrade(), executor.getGrade());
 	}

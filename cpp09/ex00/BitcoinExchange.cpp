@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:17:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/11/18 12:41:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:56:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,7 @@ unsigned int BitcoinExchange::_getNumDays(t_date date)
 	unsigned feb_days = date.year % 400 == 0 || (date.year % 4 == 0 && date.year % 100 != 0) ? 29 : 28;
 	if (date.month == 2)
 		return feb_days;
-	if ((date.month < 8 && date.month % 2 == 1) ||
-		(date.month >= 8 && date.month % 2 == 0))
+	if ((date.month < 8 && date.month % 2 == 1) || (date.month >= 8 && date.month % 2 == 0))
 		return 31;
 	return 30;
 }

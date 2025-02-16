@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 15:29:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/28 18:42:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:33:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int main(void)
 		std::cout << *it << " belongs to the vector! :)" << std::endl;
 	else
 		std::cout << SEARCH_E << " doesn't belong to the vector... :(" << std::endl;
-	return (0);
+	return 0;
 }

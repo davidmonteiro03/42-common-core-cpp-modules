@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:08:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/08 09:48:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 10:04:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ std::string join_args_to_str(char **argv)
 		ss << *argv++ << " ";
 	buf = ss.str();
 	ss.str("");
-	return (buf);
+	return buf;
 }
 
 bool check_arg(std::string arg)
@@ -33,13 +33,13 @@ bool check_arg(std::string arg)
 	while (arg[++i])
 	{
 		if ((arg[i] == '+' || arg[i] == '-') && i != 0)
-			return (false);
+			return false;
 		if (!isdigit(arg[i]) && arg[i] != '+' && arg[i] != '-')
-			return (false);
+			return false;
 		if (isdigit(arg[i]))
 			digit++;
 	}
-	return (digit > 0);
+	return digit > 0;
 }
 
 int parse_input(std::string input)
@@ -63,24 +63,24 @@ int parse_input(std::string input)
 			i++;
 		args++;
 	}
-	return (args);
+	return args;
 }
 
-template<typename T>
+template <typename T>
 bool check_dups(T _data, int num)
 {
 	typename T::iterator _it = _data.begin();
 	while (_it != _data.end())
 	{
 		if (*_it == num)
-			return (false);
+			return false;
 		++_it;
 	}
-	return (true);
+	return true;
 }
 
-template<typename T>
-void fill_data(T& _data, std::string input)
+template <typename T>
+void fill_data(T &_data, std::string input)
 {
 	int i = 0;
 	while (input[i])
@@ -107,8 +107,7 @@ void fill_data(T& _data, std::string input)
 
 PmergeMe::PmergeMe() {}
 
-PmergeMe::PmergeMe(char **argv) : \
-	_vector(std::vector<int>()), _deque(std::deque<int>()), _copy(std::vector<int>())
+PmergeMe::PmergeMe(char **argv) : _vector(std::vector<int>()), _deque(std::deque<int>()), _copy(std::vector<int>())
 {
 	std::string input = join_args_to_str(argv);
 	parse_input(input);
@@ -117,10 +116,9 @@ PmergeMe::PmergeMe(char **argv) : \
 	_copy = _vector;
 }
 
-PmergeMe::PmergeMe(const PmergeMe& copy) : \
-	_vector(copy._vector), _deque(copy._deque), _copy(copy._copy) {}
+PmergeMe::PmergeMe(const PmergeMe &copy) : _vector(copy._vector), _deque(copy._deque), _copy(copy._copy) {}
 
-PmergeMe& PmergeMe::operator=(const PmergeMe& other)
+PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 {
 	if (this != &other)
 	{
@@ -128,7 +126,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 		_deque = other._deque;
 		_copy = other._copy;
 	}
-	return (*this);
+	return *this;
 }
 
 PmergeMe::~PmergeMe() {}
@@ -137,8 +135,7 @@ PmergeMe::~PmergeMe() {}
 /*                                   VECTOR                                   */
 /* ************************************************************************** */
 
-void insert(std::pair<int, int> _element, \
-	std::vector<std::pair<int, int> >& _pairs, int n)
+void insert(std::pair<int, int> _element, std::vector<std::pair<int, int> > &_pairs, int n)
 {
 	if (n < 0)
 		_pairs.insert(_pairs.begin(), _element);
@@ -148,10 +145,10 @@ void insert(std::pair<int, int> _element, \
 		insert(_element, _pairs, n - 1);
 }
 
-void sort_pairs(std::vector<std::pair<int, int> >& _pairs, int n)
+void sort_pairs(std::vector<std::pair<int, int> > &_pairs, int n)
 {
 	if (n < 1)
-		return ;
+		return;
 	sort_pairs(_pairs, n - 1);
 	std::pair<int, int> _element = _pairs[n];
 	_pairs.erase(_pairs.begin() + n);
@@ -161,14 +158,11 @@ void sort_pairs(std::vector<std::pair<int, int> >& _pairs, int n)
 std::vector<int> create_jacob(std::vector<std::pair<int, int> > _pairs)
 {
 	std::vector<int> _ret;
-	int jacob_list[] = {
-		1,  3,      5,      11,        43,  683, 2731,
-		43691, 174763, 2796203, 715827883, 2147483647
-	}, max_index_b = _pairs.size(), max_need_index = 0, i, cur;
+	int jacob_list[] = {1, 3, 5, 11, 43, 683, 2731, 43691, 174763, 2796203, 715827883, 2147483647}, max_index_b = _pairs.size(), max_need_index = 0, i, cur;
 	while (max_index_b > jacob_list[max_need_index])
 		max_need_index++;
 	if (max_need_index == 0)
-		return (_ret);
+		return _ret;
 	for (i = 0; i < max_need_index; i++)
 	{
 		cur = jacob_list[i + 1];
@@ -177,7 +171,7 @@ std::vector<int> create_jacob(std::vector<std::pair<int, int> > _pairs)
 		while (cur > jacob_list[i])
 			_ret.push_back(cur--);
 	}
-	return (_ret);
+	return _ret;
 }
 
 std::vector<int> prepare_vector(std::vector<std::pair<int, int> > _pairs)
@@ -195,7 +189,7 @@ std::vector<int> prepare_vector(std::vector<std::pair<int, int> > _pairs)
 			_ret.push_back(_it->first);
 		_it++;
 	}
-	return (_ret);
+	return _ret;
 }
 
 void display_vector_pairs(std::vector<std::pair<int, int> > _vector_pairs)
@@ -222,10 +216,10 @@ void display_vector(std::vector<int> _vector)
 	}
 }
 
-void merge_insert_sort_vector(std::vector<int>& _vector)
+void merge_insert_sort_vector(std::vector<int> &_vector)
 {
 	if (_vector.size() < 2)
-		return ;
+		return;
 	int special_element = 0;
 	bool is_odd = _vector.size() % 2;
 	if (is_odd)
@@ -270,8 +264,7 @@ void merge_insert_sort_vector(std::vector<int>& _vector)
 /*                                   DEQUE                                    */
 /* ************************************************************************** */
 
-void insert(std::pair<int, int> _element, \
-	std::deque<std::pair<int, int> >& _pairs, int n)
+void insert(std::pair<int, int> _element, std::deque<std::pair<int, int> > &_pairs, int n)
 {
 	if (n < 0)
 		_pairs.insert(_pairs.begin(), _element);
@@ -281,10 +274,10 @@ void insert(std::pair<int, int> _element, \
 		insert(_element, _pairs, n - 1);
 }
 
-void sort_pairs(std::deque<std::pair<int, int> >& _pairs, int n)
+void sort_pairs(std::deque<std::pair<int, int> > &_pairs, int n)
 {
 	if (n < 1)
-		return ;
+		return;
 	sort_pairs(_pairs, n - 1);
 	std::pair<int, int> _element = _pairs[n];
 	_pairs.erase(_pairs.begin() + n);
@@ -294,14 +287,11 @@ void sort_pairs(std::deque<std::pair<int, int> >& _pairs, int n)
 std::deque<int> create_jacob(std::deque<std::pair<int, int> > _pairs)
 {
 	std::deque<int> _ret;
-	int jacob_list[] = {
-		1,  3,      5,      11,        43,  683, 2731,
-		43691, 174763, 2796203, 715827883, 2147483647
-	}, max_index_b = _pairs.size(), max_need_index = 0, i, cur;
+	int jacob_list[] = {1, 3, 5, 11, 43, 683, 2731, 43691, 174763, 2796203, 715827883, 2147483647}, max_index_b = _pairs.size(), max_need_index = 0, i, cur;
 	while (max_index_b > jacob_list[max_need_index])
 		max_need_index++;
 	if (max_need_index == 0)
-		return (_ret);
+		return _ret;
 	for (i = 0; i < max_need_index; i++)
 	{
 		cur = jacob_list[i + 1];
@@ -310,7 +300,7 @@ std::deque<int> create_jacob(std::deque<std::pair<int, int> > _pairs)
 		while (cur > jacob_list[i])
 			_ret.push_back(cur--);
 	}
-	return (_ret);
+	return _ret;
 }
 
 std::deque<int> prepare_deque(std::deque<std::pair<int, int> > _pairs)
@@ -328,7 +318,7 @@ std::deque<int> prepare_deque(std::deque<std::pair<int, int> > _pairs)
 			_ret.push_back(_it->first);
 		_it++;
 	}
-	return (_ret);
+	return _ret;
 }
 
 void display_deque_pairs(std::deque<std::pair<int, int> > _deque_pairs)
@@ -355,10 +345,10 @@ void display_deque(std::deque<int> _deque)
 	}
 }
 
-void merge_insert_sort_deque(std::deque<int>& _deque)
+void merge_insert_sort_deque(std::deque<int> &_deque)
 {
 	if (_deque.size() < 2)
-		return ;
+		return;
 	int special_element = 0;
 	bool is_odd = _deque.size() % 2;
 	if (is_odd)
@@ -403,17 +393,12 @@ void merge_insert_sort_deque(std::deque<int>& _deque)
 /*                                  EXECUTE                                   */
 /* ************************************************************************** */
 
-void display_time(clock_t start, clock_t end)
-{
-	std::cout << std::fixed << std::setprecision(8);
-	std::cout << double(end - start) / CLOCKS_PER_SEC << " s";
-}
+void display_time(clock_t start, clock_t end) { std::cout << std::fixed << std::setprecision(8) << double(end - start) / CLOCKS_PER_SEC << " s"; }
 
-template<typename T>
-void display_range(T& _data, std::string info)
+template <typename T>
+void display_range(T &_data, std::string info)
 {
-	std::cout << "Time to process a range of ";
-	std::cout << std::setw(4) << std::right  << _data.size() << " element";
+	std::cout << "Time to process a range of " << std::setw(4) << std::right << _data.size() << " element";
 	if (_data.size() != 1)
 		std::cout << "s";
 	std::cout << " with std::" << std::setw(7) << std::left << info << ": ";
@@ -422,32 +407,37 @@ void display_range(T& _data, std::string info)
 void PmergeMe::execute(void)
 {
 	if (_vector.size() <= 0)
-		return ;
+		return;
 	clock_t start = clock();
 	merge_insert_sort_vector(_vector);
 	clock_t middle = clock();
 	merge_insert_sort_deque(_deque);
 	clock_t end = clock();
-	std::cout << "Before: "; display_vector(_copy); std::cout << std::endl;
-	std::cout << "After:  "; display_vector(_vector); std::cout << std::endl;
-	display_range(_vector, "vector"); display_time(start, middle); std::cout << std::endl;
-	display_range(_deque, "deque"); display_time(middle, end); std::cout << std::endl;
-/* 	// this is to check if the numbers are sorted
-	std::vector<int> _cpy_vector = _vector;
-	std::sort(_vector.begin(), _vector.end());
-	if (_cpy_vector != _vector)
-		std::cout << "Is not sorted vector\n";
-	std::deque<int> _cpy_deque = _deque;
-	std::sort(_deque.begin(), _deque.end());
-	if (_cpy_deque != _deque)
-		std::cout << "Is not sorted deque\n"; */
+	std::cout << "Before: ";
+	display_vector(_copy);
+	std::cout << std::endl;
+	std::cout << "After:  ";
+	display_vector(_vector);
+	std::cout << std::endl;
+	display_range(_vector, "vector");
+	display_time(start, middle);
+	std::cout << std::endl;
+	display_range(_deque, "deque");
+	display_time(middle, end);
+	std::cout << std::endl;
+	/* 	// this is to check if the numbers are sorted
+		std::vector<int> _cpy_vector = _vector;
+		std::sort(_vector.begin(), _vector.end());
+		if (_cpy_vector != _vector)
+			std::cout << "Is not sorted vector\n";
+		std::deque<int> _cpy_deque = _deque;
+		std::sort(_deque.begin(), _deque.end());
+		if (_cpy_deque != _deque)
+			std::cout << "Is not sorted deque\n"; */
 }
 
 /* ************************************************************************** */
 /*                                 EXCEPTIONS                                 */
 /* ************************************************************************** */
 
-const char* PmergeMe::ErrorException::what() const throw()
-{
-	return ("Error");
-}
+const char *PmergeMe::ErrorException::what() const throw() { return "Error"; }

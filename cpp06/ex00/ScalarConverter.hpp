@@ -6,26 +6,24 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 21:40:54 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/26 20:11:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 08:57:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+#pragma once
 
-# include <iostream>
-# include <limits>
-# include <cstdlib>
+#include <iostream>
+#include <limits>
+#include <cstdlib>
 
 class ScalarConverter
 {
-	private:
-		ScalarConverter();
-		ScalarConverter(const ScalarConverter& copy);
-		ScalarConverter& operator=(const ScalarConverter& other);
-	public:
-		~ScalarConverter();
-		static void convert(std::string arg);
-};
+private:
+	ScalarConverter();
+	ScalarConverter(const ScalarConverter &);
+	ScalarConverter &operator=(const ScalarConverter &);
 
-#endif
+public:
+	~ScalarConverter();
+	static void convert(std::string);
+};

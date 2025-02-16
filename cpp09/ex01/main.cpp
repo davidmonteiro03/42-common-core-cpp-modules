@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:40:47 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 17:22:45 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:53:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ int main(int argc, char **argv)
 	if (argc != 2 || (argc == 2 && !*argv[1]))
 	{
 		std::cout << "Error" << std::endl;
-		return (1);
+		return 1;
 	}
 	RPN _rpn;
 	try
 	{
 		_rpn.execute(argv[1]);
 	}
-	catch(std::exception& e)
+	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
-		return (1);
+		return 1;
 	}
-	return (0);
+	return 0;
 }

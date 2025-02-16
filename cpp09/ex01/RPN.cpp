@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:08:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 15:42:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:54:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 RPN::RPN() : _stack(std::stack<double>()) {}
 
-RPN::RPN(const RPN& copy) : _stack(std::stack<double>(copy._stack)) {}
+RPN::RPN(const RPN &copy) : _stack(std::stack<double>(copy._stack)) {}
 
-RPN& RPN::operator=(const RPN& other)
+RPN &RPN::operator=(const RPN &other)
 {
 	if (this != &other)
 		_stack = other._stack;
-	return (*this);
+	return *this;
 }
 
 RPN::~RPN() {}
@@ -29,19 +29,17 @@ static int getcode(std::string arg)
 {
 	// 0 for error, 1 for number, 2 for operator
 	if (arg.size() == 0)
-		return (0);
-	if (arg.size() == 1 && \
-		(arg[0] == '+' || arg[0] == '-' || \
-		arg[0] == '*' || arg[0] == '/'))
-		return (2);
+		return 0;
+	if (arg.size() == 1 && (arg[0] == '+' || arg[0] == '-' || arg[0] == '*' || arg[0] == '/'))
+		return 2;
 	int i = 0;
 	while (arg[i])
 	{
 		if (!isdigit(arg[i]))
-			return (0);
+			return 0;
 		i++;
 	}
-	return (1);
+	return 1;
 }
 
 void RPN::execute(std::string input)
@@ -91,7 +89,4 @@ void RPN::execute(std::string input)
 	std::cout << _stack.top() << std::endl;
 }
 
-const char* RPN::ErrorException::what() const throw()
-{
-	return ("Error");
-}
+const char *RPN::ErrorException::what() const throw() { return "Error"; }

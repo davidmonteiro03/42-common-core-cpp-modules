@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:50:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 07:55:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:36:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ Span::Span() : _length(0), _storage(0) {}
 
 Span::Span(unsigned int N) : _length(N), _storage(std::vector<int>()) {}
 
-Span::Span(const Span& copy) : _length(copy._length)
+Span::Span(const Span &copy) : _length(copy._length)
 {
 	_storage.clear();
 	_storage = copy._storage;
 }
 
-Span& Span::operator=(const Span& other)
+Span &Span::operator=(const Span &other)
 {
 	if (this != &other)
 	{
 		_length = other._length;
 		_storage = other._storage;
 	}
-	return (*this);
+	return *this;
 }
 
 Span::~Span() {}
@@ -41,16 +41,15 @@ void Span::addNumber(int value)
 	_storage.push_back(value);
 }
 
-void Span::addNumberRange(std::vector<int>::iterator begin, \
-	std::vector<int>::iterator end)
+void Span::addNumberRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
 	int dist = std::distance(begin, end);
 	if (dist <= 0)
-		return ;
+		return;
 	while (begin != end)
 	{
 		if (_storage.size() == _length)
-			return ;
+			return;
 		_storage.push_back(*begin++);
 	}
 }
@@ -83,12 +82,6 @@ int Span::longestSpan(void) const
 	return (*max - *min);
 }
 
-const char* Span::VectorIsFullException::what() const throw()
-{
-	return ("Span: VectorIsFullException");
-}
+const char *Span::VectorIsFullException::what() const throw() { return "Span: VectorIsFullException"; }
 
-const char* Span::TooFewElementsException::what() const throw()
-{
-	return ("Span: TooFewElementsException");
-}
+const char *Span::TooFewElementsException::what() const throw() { return "Span: TooFewElementsException"; }

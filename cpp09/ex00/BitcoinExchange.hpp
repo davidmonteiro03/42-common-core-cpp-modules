@@ -6,12 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:14:21 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/10/22 14:48:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:51:24 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BITCOINEXCHANGE_HPP
-#define BITCOINEXCHANGE_HPP
+#pragma once
 
 #include <cstdlib>
 #include <cstring>
@@ -68,5 +67,3 @@ public:
 	~BitcoinExchange();
 	void _execute(std::string);
 };
-
-#endif // !BITCOINEXCHANGE_HPP

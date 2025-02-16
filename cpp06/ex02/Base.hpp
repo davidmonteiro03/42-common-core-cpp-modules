@@ -6,17 +6,14 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 22:02:07 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/26 22:14:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:04:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-# define BASE_HPP
+#pragma once
 
 class Base
 {
-	public:
-		virtual ~Base();
+public:
+	virtual ~Base();
 };
-
-#endif

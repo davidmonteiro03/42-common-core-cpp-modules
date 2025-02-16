@@ -6,44 +6,41 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:43:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 19:24:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:37:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-# define SPAN_HPP
+#pragma once
 
-# include <iostream>
-# include <algorithm>
-# include <vector>
-# include <stdexcept>
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <stdexcept>
 
 class Span
 {
-	private:
-		unsigned int _length;
-		std::vector<int> _storage;
-	public:
-		Span();
-		Span(unsigned int N);
-		Span(const Span& copy);
-		Span& operator=(const Span& other);
-		virtual ~Span();
-		void addNumber(int value);
-		int shortestSpan(void);
-		int longestSpan(void) const;
-		void addNumberRange(std::vector<int>::iterator begin, \
-			std::vector<int>::iterator end);
-		class VectorIsFullException : public std::exception
-		{
-			public:
-				virtual const char* what() const throw();
-		};
-		class TooFewElementsException : public std::exception
-		{
-			public:
-				virtual const char* what() const throw();
-		};
-};
+private:
+	unsigned int _length;
+	std::vector<int> _storage;
 
-#endif
+public:
+	Span();
+	Span(unsigned int);
+	Span(const Span &);
+	Span &operator=(const Span &);
+	virtual ~Span();
+	void addNumber(int);
+	int shortestSpan(void);
+	int longestSpan(void) const;
+	void addNumberRange(std::vector<int>::iterator, std::vector<int>::iterator);
+	class VectorIsFullException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
+	class TooFewElementsException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
+};

@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 10:09:29 by dcaetano          #+#    #+#              #
-#    Updated: 2024/10/22 10:39:15 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/02/16 09:52:36 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,24 +48,24 @@ LIB_NAME      = $(PROGRAM_NAME).a
 all: $(NAME)
 
 $(OBJS_DIR)/$(SRCS_DIR)/%$(OBJ_EXTENSION): %$(CPP_EXTENSION)
-	$(MKDIR) $(MKDIR_FLAGS) $(dir $@)
-	$(CXX) $(CXX_FLAGS) -c $< -o $@
+	@$(MKDIR) $(MKDIR_FLAGS) $(dir $@)
+	@$(CXX) $(CXX_FLAGS) -c $< -o $@
 
 $(OBJS_DIR)/%$(OBJ_EXTENSION): %$(CPP_EXTENSION)
-	$(MKDIR) $(MKDIR_FLAGS) $(dir $@)
-	$(CXX) $(CXX_FLAGS) -c $< -o $@
+	@$(MKDIR) $(MKDIR_FLAGS) $(dir $@)
+	@$(CXX) $(CXX_FLAGS) -c $< -o $@
 
 $(LIB): $(OBJS)
-	$(AR_RCS) $(LIB) $(OBJS)
+	@$(AR_RCS) $(LIB) $(OBJS)
 
 $(NAME): $(LIB) $(MAIN_OBJ)
-	$(CXX) $(CXX_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
+	@$(CXX) $(CXX_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
 
 clean:
-	$(RM) $(RM_FLAGS) $(OBJS_DIR)
+	@$(RM) $(RM_FLAGS) $(OBJS_DIR)
 
 fclean: clean
-	$(RM) $(RM_FLAGS) $(NAME) $(LIB)
+	@$(RM) $(RM_FLAGS) $(NAME) $(LIB)
 
 re: fclean all
 

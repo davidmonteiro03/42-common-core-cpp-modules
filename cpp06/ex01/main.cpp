@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 21:33:01 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/26 22:00:41 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:03:37 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ int	main(void)
 	std::cout << "Deserialize contents" << std::endl;
 	std::cout << "data_1: " << data_1->name << ", " << data_1->age << std::endl;
 	std::cout << "data_2: " << data_2->name << ", " << data_2->age << std::endl;
-	return (0);
+	return 0;
 }

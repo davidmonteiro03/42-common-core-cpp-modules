@@ -6,28 +6,26 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 07:58:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/25 08:46:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 08:40:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#pragma once
 
-# include "AForm.hpp"
-# include <fstream>
+#include "AForm.hpp"
+#include <fstream>
 
 class ShrubberyCreationForm : public AForm
 {
-	private:
-		std::string _target;
-	public:
-		ShrubberyCreationForm();
-		ShrubberyCreationForm(const std::string target);
-		ShrubberyCreationForm(const ShrubberyCreationForm& copy);
-		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
-		~ShrubberyCreationForm();
-		std::string getTarget(void) const;
-		void execute(Bureaucrat const & executor) const;
-};
+private:
+	std::string _target;
 
-#endif
+public:
+	ShrubberyCreationForm();
+	ShrubberyCreationForm(const std::string);
+	ShrubberyCreationForm(const ShrubberyCreationForm &);
+	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &);
+	~ShrubberyCreationForm();
+	std::string getTarget(void) const;
+	void execute(Bureaucrat const &) const;
+};

@@ -6,27 +6,25 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 07:58:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/25 08:46:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 08:39:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
+#pragma once
 
-# include "AForm.hpp"
+#include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm
 {
-	private:
-		std::string _target;
-	public:
-		RobotomyRequestForm();
-		RobotomyRequestForm(const std::string target);
-		RobotomyRequestForm(const RobotomyRequestForm& copy);
-		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
-		~RobotomyRequestForm();
-		std::string getTarget(void) const;
-		void execute(Bureaucrat const & executor) const;
-};
+private:
+	std::string _target;
 
-#endif
+public:
+	RobotomyRequestForm();
+	RobotomyRequestForm(const std::string);
+	RobotomyRequestForm(const RobotomyRequestForm &);
+	RobotomyRequestForm &operator=(const RobotomyRequestForm &);
+	~RobotomyRequestForm();
+	std::string getTarget(void) const;
+	void execute(Bureaucrat const &) const;
+};

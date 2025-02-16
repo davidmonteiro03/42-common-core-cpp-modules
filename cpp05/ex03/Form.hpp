@@ -10,54 +10,52 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#pragma once
 
-# include "Bureaucrat.hpp"
+#include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
 class Form
 {
-	private:
-		const std::string _name;
-		bool _status;
-		const int _signGrade;
-		const int _execGrade;
+private:
+	const std::string _name;
+	bool _status;
+	const int _signGrade;
+	const int _execGrade;
+
+public:
+	Form();
+	Form(const std::string, const int, const int);
+	Form(const Form &);
+	Form &operator=(const Form &);
+	virtual ~Form();
+	const std::string getName(void) const;
+	bool getStatus(void) const;
+	int getSignGrade(void) const;
+	int getExecGrade(void) const;
+	virtual void execute(Bureaucrat const &) const = 0;
+	class GradeTooHighException : public std::exception
+	{
 	public:
-		Form();
-		Form(const std::string name, const int signGrade, const int execGrade);
-		Form(const Form& copy);
-		Form& operator=(const Form& other);
-		virtual ~Form();
-		const std::string getName(void) const;
-		bool getStatus(void) const;
-		int getSignGrade(void) const;
-		int getExecGrade(void) const;
-		virtual void execute(Bureaucrat const & executor) const = 0;
-		class GradeTooHighException : public std::exception
-		{
-			public:
-				virtual const char* what() const throw();
-		};
-		class GradeTooLowException : public std::exception
-		{
-			public:
-				virtual const char* what() const throw();
-		};
-		class AlreadySignedException : public std::exception
-		{
-			public:
-				virtual const char* what() const throw();
-		};
-		class UnsignedFormException : public std::exception
-		{
-			public:
-				virtual const char* what() const throw();
-		};
-		void beSigned(Bureaucrat& bc);
+		virtual const char *what() const throw();
+	};
+	class GradeTooLowException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
+	class AlreadySignedException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
+	class UnsignedFormException : public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
+	void beSigned(Bureaucrat &);
 };
 
-std::ostream& operator<<(std::ostream& o, const Form& form);
-
-#endif
+std::ostream &operator<<(std::ostream &, const Form &);

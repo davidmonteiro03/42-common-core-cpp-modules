@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 19:37:20 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 07:48:46 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:34:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,26 @@ int main(void)
 			std::cout << sp.shortestSpan() << std::endl;
 			std::cout << sp.longestSpan() << std::endl;
 		}
-		catch(std::exception& e) { std::cerr << e.what() << std::endl; }
-	}
-/* 	{
-		try
+		catch (std::exception &e)
 		{
-			Span sp = Span(5);
-			std::vector<int> range;
-			range.push_back(6);
-			range.push_back(3);
-			range.push_back(17);
-			range.push_back(9);
-			range.push_back(11);
-			sp.addNumberRange(range.begin(), range.end());
-			std::cout << sp.shortestSpan() << std::endl;
-			std::cout << sp.longestSpan() << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
-		catch(std::exception& e) { std::cerr << e.what() << std::endl; }
-	} */
-	return (0);
+	}
+	/* 	{
+			try
+			{
+				Span sp = Span(5);
+				std::vector<int> range;
+				range.push_back(6);
+				range.push_back(3);
+				range.push_back(17);
+				range.push_back(9);
+				range.push_back(11);
+				sp.addNumberRange(range.begin(), range.end());
+				std::cout << sp.shortestSpan() << std::endl;
+				std::cout << sp.longestSpan() << std::endl;
+			}
+			catch(std::exception& e) { std::cerr << e.what() << std::endl; }
+		} */
+	return 0;
 }

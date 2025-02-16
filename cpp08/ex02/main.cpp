@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 08:02:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 18:59:12 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:49:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,12 @@ int main(void)
 		}
 		std::stack<int> s(mstack);
 	}
-	std::cout << std::endl;
+	std::cout << "-------------------------------" << std::endl;
 	{
 		std::list<int> mlist;
 		mlist.push_back(5);
 		mlist.push_back(17);
-		std::list<int>::iterator tmp = mlist.end();
-		tmp--;
-		if (tmp != mlist.end())
-			std::cout << *tmp << std::endl;
+		std::cout << mlist.back() << std::endl;
 		mlist.pop_back();
 		std::cout << mlist.size() << std::endl;
 		mlist.push_back(3);
@@ -61,7 +58,7 @@ int main(void)
 			std::cout << *it << std::endl;
 			++it;
 		}
-		std::list<int> s(mlist);
+		std::list<int> l(mlist);
 	}
 	return 0;
 }

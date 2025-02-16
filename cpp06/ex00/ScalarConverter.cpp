@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 19:55:28 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/03/20 07:56:01 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 08:57:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,49 @@
 
 ScalarConverter::ScalarConverter() {}
 
-ScalarConverter::ScalarConverter(const ScalarConverter& copy){ *this = copy; }
+ScalarConverter::ScalarConverter(const ScalarConverter &copy) { *this = copy; }
 
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 {
 	if (this != &other)
 		;
-	return (*this);
+	return *this;
 }
 ScalarConverter::~ScalarConverter() {}
 
 void convertChar(char val)
 {
-	std::cout << "char: '" << static_cast<char>(val) << "'" << std::endl;
-	std::cout << "int: " << static_cast<int>(val) << std::endl;
-	std::cout << "float: " << static_cast<float>(val) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(val) << ".0" << std::endl;
+	std::cout << "char: '" << static_cast<char>(val) << "'" << std::endl
+			  << "int: " << static_cast<int>(val) << std::endl
+			  << "float: " << static_cast<float>(val) << ".0f" << std::endl
+			  << "double: " << static_cast<double>(val) << ".0" << std::endl;
 }
 
 void convertInt(long int val)
 {
-	if (!(val >= std::numeric_limits<char>::min() && \
-		val <= std::numeric_limits<char>::max()))
+	if (!(val >= std::numeric_limits<char>::min() && val <= std::numeric_limits<char>::max()))
 		std::cout << "char: impossible" << std::endl;
 	else if (!isprint(val))
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << static_cast<char>(val) << "'" << std::endl;
-	if (!(val >= std::numeric_limits<int>::min() && \
-		val <= std::numeric_limits<int>::max()))
+	if (!(val >= std::numeric_limits<int>::min() && val <= std::numeric_limits<int>::max()))
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(val) << std::endl;
-	std::cout << "float: " << static_cast<float>(val) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(val) << ".0" << std::endl;
+	std::cout << "float: " << static_cast<float>(val) << ".0f" << std::endl
+			  << "double: " << static_cast<double>(val) << ".0" << std::endl;
 }
 
 void convertFloat(float val)
 {
-	if (!(val >= std::numeric_limits<char>::min() && \
-		val <= std::numeric_limits<char>::max()))
+	if (!(val >= std::numeric_limits<char>::min() && val <= std::numeric_limits<char>::max()))
 		std::cout << "char: impossible" << std::endl;
 	else if (!isprint(val))
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << static_cast<char>(val) << "'" << std::endl;
-	if (!(val >= std::numeric_limits<int>::min() && \
-		val <= std::numeric_limits<int>::max()))
+	if (!(val >= std::numeric_limits<int>::min() && val <= std::numeric_limits<int>::max()))
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(val) << std::endl;
@@ -76,15 +72,13 @@ void convertFloat(float val)
 
 void convertDouble(double val)
 {
-	if (!(val >= std::numeric_limits<char>::min() && \
-		val <= std::numeric_limits<char>::max()))
+	if (!(val >= std::numeric_limits<char>::min() && val <= std::numeric_limits<char>::max()))
 		std::cout << "char: impossible" << std::endl;
 	else if (!isprint(val))
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << static_cast<char>(val) << "'" << std::endl;
-	if (!(val >= std::numeric_limits<int>::min() && \
-		val <= std::numeric_limits<int>::max()))
+	if (!(val >= std::numeric_limits<int>::min() && val <= std::numeric_limits<int>::max()))
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(val) << std::endl;
@@ -104,13 +98,13 @@ bool isInt(std::string arg)
 	while (arg[++i])
 	{
 		if ((arg[i] == '+' || arg[i] == '-') && i != 0)
-			return (false);
+			return false;
 		if (!isdigit(arg[i]) && arg[i] != '+' && arg[i] != '-')
-			return (false);
+			return false;
 		if (isdigit(arg[i]))
 			digit++;
 	}
-	return (digit > 0);
+	return digit > 0;
 }
 
 bool isFloat(std::string arg)
@@ -119,11 +113,9 @@ bool isFloat(std::string arg)
 	while (arg[++i])
 	{
 		if ((arg[i] == '+' || arg[i] == '-') && i != 0)
-			return (false);
-		if (!isdigit(arg[i]) && \
-			arg[i] != '+' && arg[i] != '-' && \
-			arg[i] != '.' && arg[i] != 'f')
-			return (false);
+			return false;
+		if (!isdigit(arg[i]) && arg[i] != '+' && arg[i] != '-' && arg[i] != '.' && arg[i] != 'f')
+			return false;
 		if (isdigit(arg[i]))
 			digit++;
 		if (arg[i] == '.')
@@ -131,11 +123,11 @@ bool isFloat(std::string arg)
 		if (arg[i] == 'f')
 		{
 			if (i != int(arg.length()) - 1)
-				return (false);
+				return false;
 			f++;
 		}
 	}
-	return (digit > 0 && dot == 1 && f == 1);
+	return digit > 0 && dot == 1 && f == 1;
 }
 
 bool isDouble(std::string arg)
@@ -144,11 +136,9 @@ bool isDouble(std::string arg)
 	while (arg[++i])
 	{
 		if ((arg[i] == '+' || arg[i] == '-') && i != 0)
-			return (false);
-		if (!isdigit(arg[i]) && \
-			arg[i] != '+' && arg[i] != '-' && \
-			arg[i] != '.' && arg[i] != 'f')
-			return (false);
+			return false;
+		if (!isdigit(arg[i]) && arg[i] != '+' && arg[i] != '-' && arg[i] != '.' && arg[i] != 'f')
+			return false;
 		if (isdigit(arg[i]))
 			digit++;
 		if (arg[i] == '.')
@@ -156,11 +146,11 @@ bool isDouble(std::string arg)
 		if (arg[i] == 'f')
 		{
 			if (i != int(arg.length()) - 1)
-				return (false);
+				return false;
 			f++;
 		}
 	}
-	return (digit > 0 && dot == 1 && f == 0);
+	return digit > 0 && dot == 1 && f == 0;
 }
 
 void ScalarConverter::convert(std::string arg)

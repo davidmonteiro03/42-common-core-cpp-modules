@@ -6,20 +6,14 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 14:16:25 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/28 18:31:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:32:55 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_HPP
-# define EASYFIND_HPP
+#pragma once
 
-# include <iostream>
-# include <algorithm>
+#include <iostream>
+#include <algorithm>
 
-template<typename T>
-typename T::iterator easyfind(T& container, int value)
-{
-	return (std::find(container.begin(), container.end(), value));
-}
-
-#endif
+template <typename T>
+typename T::iterator easyfind(T &container, int value) { return (std::find(container.begin(), container.end(), value)); }

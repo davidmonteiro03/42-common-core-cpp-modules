@@ -6,19 +6,16 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 22:02:07 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/26 22:05:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/16 09:04:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C_HPP
-# define C_HPP
+#pragma once
 
-# include "Base.hpp"
+#include "Base.hpp"
 
 class C : public Base
 {
-	public:
-		virtual ~C();
+public:
+	virtual ~C();
 };
-
-#endif
