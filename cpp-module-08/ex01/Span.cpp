@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:50:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/16 09:36:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:41:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,20 @@ void Span::addNumberRange(std::vector<int>::iterator begin, std::vector<int>::it
 	}
 }
 
-int Span::shortestSpan(void)
+int Span::shortestSpan(void) const
 {
 	if (_storage.size() <= 1)
 		throw TooFewElementsException();
-	std::sort(_storage.begin(), _storage.end());
-	std::vector<int>::iterator start_it = _storage.begin();
-	std::vector<int>::iterator end_it = _storage.end();
-	end_it--;
-	int min = *start_it;
-	while (start_it != end_it)
+	std::vector<int> tmp(_storage);
+	std::sort(tmp.begin(), tmp.end());
+	int min = tmp[0];
+	for (size_t i = 0; i < tmp.size() - 1; i++)
 	{
-		int current = *start_it, next = *(++start_it);
-		if (next - current < min)
-			min = next - current;
+		int curr = tmp[i], next = tmp[i + 1];
+		if (next - curr < min)
+			min = next - curr;
 	}
-	return (min);
+	return min;
 }
 
 int Span::longestSpan(void) const
@@ -79,7 +77,7 @@ int Span::longestSpan(void) const
 	std::vector<int>::const_iterator min, max;
 	min = std::min_element(_storage.begin(), _storage.end());
 	max = std::max_element(_storage.begin(), _storage.end());
-	return (*max - *min);
+	return *max - *min;
 }
 
 const char *Span::VectorIsFullException::what() const throw() { return "Span: VectorIsFullException"; }
