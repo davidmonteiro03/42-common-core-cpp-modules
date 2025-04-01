@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 17:23:24 by dcaetano          #+#    #+#              #
-#    Updated: 2025/04/01 18:09:38 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/04/01 19:57:28 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJ_EXT   = .o
 
 CLASSES   = Contact PhoneBook
 CPPFILES  = $(CLASSES)
-HPPFILES  = $(CLASSES)
+HPPFILES  = $(NAME) $(CLASSES)
 
 INCS      = $(addprefix $(INCS_D)/, \
                         $(addsuffix $(HPP_EXT), \
