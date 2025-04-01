@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   phone_book.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 18:07:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 21:42:09 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:38:10 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/01 18:27:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+#include <csignal>
+#include <cstring>
+#include <iomanip>
+#include <iostream>
+#include <string>
+
+class Contact;
+class PhoneBook;
+
 #include "Contact.hpp"
-
-class PhoneBook
-{
-private:
-	Contact contacts[8];
-	int index;
-
-public:
-	PhoneBook(void);
-	~PhoneBook(void);
-	void add_contact(void);
-	void search_contact(void);
-	void print_contact(Contact contact);
-	Contact get_contact(int index);
-};
+#include "PhoneBook.hpp"

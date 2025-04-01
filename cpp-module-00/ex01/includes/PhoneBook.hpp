@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook_utils.hpp                                :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 18:48:30 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 21:39:42 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:36:37 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/01 18:57:41 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "PhoneBook.hpp"
-#include "Contact.hpp"
+class PhoneBook
+{
+public:
+	PhoneBook(void);
+	PhoneBook(const PhoneBook &);
+	PhoneBook &operator=(const PhoneBook &);
+	~PhoneBook();
 
-int search_contact_util(Contact[8]);
+	void add(void);
+	void search(void);
+
+private:
+	static const std::size_t MAX_CONTACTS = 8;
+	Contact __contacts[MAX_CONTACTS];
+	std::size_t __index;
+	std::size_t __filled;
+};
