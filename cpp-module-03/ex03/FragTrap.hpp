@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 20:03:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 23:16:15 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 15:01:44 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 16:08:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@
 class FragTrap : virtual public ClapTrap
 {
 public:
-	// Orthodox Canonical Form
-	FragTrap(std::string);
+	FragTrap(void);
+	FragTrap(const std::string &);
 	FragTrap(const FragTrap &);
 	FragTrap &operator=(const FragTrap &);
 	~FragTrap();
 
-	// member functions
-	void attack(const std::string &);
 	void highFivesGuys(void);
+
+protected:
+	static const unsigned int _hitPoints = 100;
+	static const unsigned int _energyPoints = 100;
+	static const unsigned int _attackDamage = 30;
 };

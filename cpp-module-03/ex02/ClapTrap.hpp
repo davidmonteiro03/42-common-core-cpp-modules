@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 19:07:52 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 23:06:00 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 15:01:44 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 15:51:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,20 @@
 
 class ClapTrap
 {
-protected:
-	std::string _name;
-	int _hitPoints;
-	int _energyPoints;
-	int _attackDamage;
-
 public:
-	// Orthodox Canonical Form
-	ClapTrap(std::string);
+	ClapTrap(void);
+	ClapTrap(const std::string &);
 	ClapTrap(const ClapTrap &);
 	ClapTrap &operator=(const ClapTrap &);
 	~ClapTrap();
 
-	// getters
-	std::string getName(void) const;
-	int getHitPoints(void) const;
-	int getEnergyPoints(void) const;
-	int getAttackDamage(void) const;
-
-	// member functions
 	void attack(const std::string &);
 	void takeDamage(unsigned int);
 	void beRepaired(unsigned int);
+
+protected:
+	std::string __name;
+	unsigned int __hitPoints;
+	unsigned int __energyPoints;
+	unsigned int __attackDamage;
 };

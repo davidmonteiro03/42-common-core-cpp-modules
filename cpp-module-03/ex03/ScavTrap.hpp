@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 20:03:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 23:18:31 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 15:01:44 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 16:09:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,17 @@
 class ScavTrap : virtual public ClapTrap
 {
 public:
-	// Orthodox Canonical Form
-	ScavTrap(std::string);
+	ScavTrap(void);
+	ScavTrap(const std::string &);
 	ScavTrap(const ScavTrap &);
 	ScavTrap &operator=(const ScavTrap &);
 	~ScavTrap();
 
-	// member functions
 	void attack(const std::string &);
-	void guardGate();
+	void guardGate(void);
+
+protected:
+	static const unsigned int _hitPoints = 100;
+	static const unsigned int _energyPoints = 50;
+	static const unsigned int _attackDamage = 20;
 };

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 23:16:29 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:27:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 16:25:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,42 @@
 
 int main(void)
 {
-	DiamondTrap diamond("diamond1");
+	{
+		DiamondTrap unknown;
+		DiamondTrap test("test");
+		DiamondTrap copy(unknown);
+		std::cout << std::endl;
 
-	diamond.attack("enemy");
-	diamond.takeDamage(5);
-	diamond.beRepaired(5);
-	diamond.guardGate();
-	diamond.highFivesGuys();
-	diamond.whoAmI();
+		copy = test;
+		std::cout << std::endl;
+
+		test.attack("clap");
+		std::cout << std::endl;
+
+		test.takeDamage(5);
+		std::cout << std::endl;
+
+		test.beRepaired(5);
+		std::cout << std::endl;
+
+		test.guardGate();
+		std::cout << std::endl;
+
+		test.highFivesGuys();
+		std::cout << std::endl;
+
+		unknown.whoAmI();
+		std::cout << std::endl;
+
+		copy.whoAmI();
+		std::cout << std::endl;
+
+		test.whoAmI();
+		std::cout << std::endl;
+	}
+	std::cout << std::endl;
+
+	// Do whatever you want ...
+
 	return 0;
 }

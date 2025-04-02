@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 23:08:30 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:27:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 16:03:24 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,30 @@
 
 int main(void)
 {
-	FragTrap frag("frag1");
+	{
+		FragTrap unknown;
+		FragTrap test("test");
+		FragTrap copy(unknown);
+		std::cout << std::endl;
 
-	frag.attack("enemy");
-	frag.highFivesGuys();
+		copy = test;
+		std::cout << std::endl;
+
+		test.attack("clap");
+		std::cout << std::endl;
+
+		test.takeDamage(5);
+		std::cout << std::endl;
+
+		test.beRepaired(5);
+		std::cout << std::endl;
+
+		test.highFivesGuys();
+		std::cout << std::endl;
+	}
+	std::cout << std::endl;
+
+	// Do whatever you want ...
+
 	return 0;
 }

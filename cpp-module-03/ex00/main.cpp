@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:58:41 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:27:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 15:46:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,27 @@
 
 int main(void)
 {
-	ClapTrap clap("clap1");
+	{
+		ClapTrap unknown;
+		ClapTrap test("test");
+		ClapTrap copy(unknown);
+		std::cout << std::endl;
 
-	clap.attack("enemy");
-	clap.takeDamage(5);
-	clap.beRepaired(5);
+		copy = test;
+		std::cout << std::endl;
+
+		test.attack("clap");
+		std::cout << std::endl;
+
+		test.takeDamage(5);
+		std::cout << std::endl;
+
+		test.beRepaired(5);
+		std::cout << std::endl;
+	}
+	std::cout << std::endl;
+
+	// Do whatever you want ...
+
 	return 0;
 }
