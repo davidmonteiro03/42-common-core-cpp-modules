@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 09:28:07 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:55:17 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 12:55:54 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 13:42:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,21 @@
 
 class Point
 {
-private:
-	const Fixed _x;
-	const Fixed _y;
-
 public:
 	Point(void);
-	Point(const float, const float);
+	Point(const float &, const float &);
 	Point(const Point &);
 	Point &operator=(const Point &);
 	~Point();
 
-	Fixed getX(void) const;
-	Fixed getY(void) const;
+	const Fixed &getX(void) const;
+	const Fixed &getY(void) const;
+
+private:
+	const Fixed __x;
+	const Fixed __y;
 };
+
+std::ostream &operator<<(std::ostream &, const Point &);
 
 bool bsp(Point const, Point const, Point const, Point const);

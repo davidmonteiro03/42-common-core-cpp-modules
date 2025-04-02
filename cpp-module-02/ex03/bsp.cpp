@@ -5,36 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 09:34:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:48:12 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 13:04:05 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 14:55:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-static Fixed abs(Fixed val)
-{
-	if (val < 0)
-		return val * -1;
-	return val;
-}
+std::ostream &operator<<(std::ostream &os, const Point &p) { return os << "(" << p.getX() << ", " << p.getY() << ")"; }
 
-static Fixed area(Point const a, Point const b, Point const c) { return (a.getX() * (b.getY() - c.getY()) + b.getX() * (c.getY() - a.getY()) + c.getX() * (a.getY() - b.getY())) / 2; }
+static Fixed ft_abs(const Fixed &f) { return f >= 0 ? f : f * -1; }
+
+static Fixed triangleArea(const Point &a, const Point &b, const Point &c)
+{
+	const Fixed &x1 = a.getX(), y1 = a.getY();
+	const Fixed &x2 = b.getX(), y2 = b.getY();
+	const Fixed &x3 = c.getX(), y3 = c.getY();
+	return ft_abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2;
+}
 
 bool bsp(Point const a, Point const b, Point const c, Point const point)
 {
-	Fixed area_abc = abs(area(a, b, c));
-	Fixed area_pab = abs(area(point, a, b));
-	Fixed area_pac = abs(area(point, a, c));
-	Fixed area_pbc = abs(area(point, b, c));
-
-	if (point.getX() == a.getX() && point.getY() == a.getY())
-		return false;
-	if (point.getX() == b.getX() && point.getY() == b.getY())
-		return false;
-	if (point.getX() == c.getX() && point.getY() == c.getY())
-		return false;
-	if (area_abc == 0 || area_pab == 0 || area_pac == 0 || area_pbc == 0)
-		return false;
-	return area_pab + area_pac + area_pbc == area_abc;
+	const Fixed &areaABC = triangleArea(a, b, c);
+	const Fixed &areaABP = triangleArea(a, b, point);
+	const Fixed &areaACP = triangleArea(a, c, point);
+	const Fixed &areaBCP = triangleArea(b, c, point);
+	const bool &inEdges = areaABP == 0 || areaACP == 0 || areaBCP == 0;
+	const bool &inside = areaABP + areaACP + areaBCP == areaABC;
+	return inEdges == false && inside == true;
 }

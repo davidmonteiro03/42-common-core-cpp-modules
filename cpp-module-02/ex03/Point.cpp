@@ -5,31 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 09:36:11 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:54:55 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 12:58:23 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 13:05:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-Point::Point(void) : _x(0), _y(0) {}
+Point::Point(void) : __x(0), __y(0) {}
 
-Point::Point(const float x, const float y) : _x(x), _y(y) {}
+Point::Point(const float &x, const float &y) : __x(x), __y(y) {}
 
-Point::Point(const Point &ref) : _x(ref._x), _y(ref._y) {}
+Point::Point(const Point &copy) : __x(copy.__x), __y(copy.__y) {}
 
-Point &Point::operator=(const Point &ref)
-{
-	if (this != &ref)
-	{
-		(Fixed) this->_x = ref.getX();
-		(Fixed) this->_y = ref.getY();
-	}
-	return *this;
-}
+Point &Point::operator=(const Point &) { return *this; }
 
 Point::~Point() {}
 
-Fixed Point::getX(void) const { return this->_x; }
+const Fixed &Point::getX(void) const { return this->__x; }
 
-Fixed Point::getY(void) const { return this->_y; }
+const Fixed &Point::getY(void) const { return this->__y; }

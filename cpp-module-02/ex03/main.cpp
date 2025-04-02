@@ -5,53 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 12:31:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:52:15 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:27:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 13:42:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
+#include <iostream>
+#include <sstream>
 
-#define BGRN "\033[1;32m"
-#define BRED "\033[1;31m"
-#define BCYN "\033[1;36m"
-#define RESET "\033[0m"
-
-void test(Point a, Point b, Point c, Point point, int const num, bool result)
+int main(int argc, char **argv)
 {
-	std::cout << BCYN "Test " << num << RESET ": ";
-	if (bsp(a, b, c, point) == result)
-		std::cout << BGRN "OK" RESET << std::endl;
-	else
-		std::cout << BRED "KO" RESET << std::endl;
-}
+	if (argc != 5)
+	{
+		std::cerr << "usage: " << argv[0] << " <ax ay> <bx by> <cx cy> <px py>" << std::endl;
+		return 1;
+	}
 
-int main(void)
-{
-	test(Point(1, 3), Point(5, 2), Point(3, 6), Point(4, 4), 1, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(3, 2), 2, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(5, 3), 3, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(4, 4), 4, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(2, 5), 5, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(6, 1), 6, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(4, 2), 7, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(3, 3), 8, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(5, 4), 9, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(4, 3), 10, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(4, 5), 11, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(3, 4), 12, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(5, 2), 13, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(5, 5), 14, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(3, 5), 15, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(3, 1), 16, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(5, 1), 17, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(2, 4), 18, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(4, 3.5f), 19, true);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(4, 4.5f), 20, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(4, 2.5f), 21, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(3.5f, 4), 22, true);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(4.5f, 4), 23, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(3.5f, 3.5f), 24, false);
-	test(Point(2, 5), Point(6, 1), Point(4, 4), Point(3.5f, 4.5f), 25, false);
+	float ax = 0, ay = 0, bx = 0, by = 0, cx = 0, cy = 0, px = 0, py = 0;
+	std::stringstream aSs(argv[1]), bSs(argv[2]), cSs(argv[3]), pSs(argv[4]);
+
+	aSs >> ax >> ay;
+	bSs >> bx >> by;
+	cSs >> cx >> cy;
+	pSs >> px >> py;
+
+	Point a(ax, ay), b(bx, by), c(cx, cy), p(px, py);
+	bool bspResult = bsp(a, b, c, p);
+
+	std::cout << "=======================" << std::endl;
+	std::cout << "A = " << a << std::endl;
+	std::cout << "B = " << b << std::endl;
+	std::cout << "C = " << c << std::endl;
+	std::cout << "P = " << p << std::endl;
+	std::cout << "-----------------------" << std::endl;
+	std::cout << "BSP = " << (bspResult == true ? "TRUE" : "FALSE") << std::endl;
+	std::cout << std::endl;
+
 	return 0;
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 11:45:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:40:42 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 11:20:47 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 11:37:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,23 @@
 
 class Fixed
 {
-private:
-	int _fixedpoint;
-	static const int _fractionalbits = 8;
-
 public:
 	Fixed(void);
+	Fixed(const int &);
+	Fixed(const float &);
 	Fixed(const Fixed &);
-	Fixed(const int);
-	Fixed(const float);
 	Fixed &operator=(const Fixed &);
 	~Fixed();
+
 	int getRawBits(void) const;
 	void setRawBits(int const);
+
 	float toFloat(void) const;
 	int toInt(void) const;
+
+private:
+	int __value;
+	static const int __fractionalBits = 8;
 };
 
-std::ostream &operator<<(std::ostream &, Fixed const &);
+std::ostream &operator<<(std::ostream &, const Fixed &);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 11:45:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:52:27 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 11:20:47 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 12:46:36 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@
 
 class Fixed
 {
-private:
-	int _fixedpoint;
-	static const int _fractionalbits = 8;
-
 public:
 	Fixed(void);
+	Fixed(const int &);
+	Fixed(const float &);
 	Fixed(const Fixed &);
-	Fixed(const int);
-	Fixed(const float);
 	Fixed &operator=(const Fixed &);
 	~Fixed();
 
-	// comparison operators
+	int getRawBits(void) const;
+	void setRawBits(int const);
+
+	float toFloat(void) const;
+	int toInt(void) const;
+
 	bool operator>(const Fixed &) const;
 	bool operator<(const Fixed &) const;
 	bool operator>=(const Fixed &) const;
@@ -37,28 +38,24 @@ public:
 	bool operator==(const Fixed &) const;
 	bool operator!=(const Fixed &) const;
 
-	// arithmetic operators
-	Fixed operator+(const Fixed &);
-	Fixed operator-(const Fixed &);
-	Fixed operator*(const Fixed &);
-	Fixed operator/(const Fixed &);
+	Fixed operator+(const Fixed &) const;
+	Fixed operator-(const Fixed &) const;
+	Fixed operator*(const Fixed &) const;
+	Fixed operator/(const Fixed &) const;
 
-	// increment/decrement operators
-	Fixed operator++(int);
 	Fixed &operator++(void);
-	Fixed operator--(int);
+	Fixed operator++(int);
 	Fixed &operator--(void);
+	Fixed operator--(int);
 
-	// min/max
 	static Fixed &min(Fixed &, Fixed &);
 	static const Fixed &min(const Fixed &, const Fixed &);
 	static Fixed &max(Fixed &, Fixed &);
 	static const Fixed &max(const Fixed &, const Fixed &);
 
-	int getRawBits(void) const;
-	void setRawBits(int const);
-	float toFloat(void) const;
-	int toInt(void) const;
+private:
+	int __value;
+	static const int __fractionalBits = 8;
 };
 
-std::ostream &operator<<(std::ostream &, Fixed const &);
+std::ostream &operator<<(std::ostream &, const Fixed &);
