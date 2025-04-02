@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 08:48:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:32:17 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:27:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 11:02:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int main(int argc, char **argv)
 {
-	Harl Harl;
-
 	if (argc != 2)
 	{
-		std::cout << "Wrong number of arguments" << std::endl;
+		std::cerr << "Usage: " << argv[0] << " <level>" << std::endl;
 		return 1;
 	}
-	Harl.complain(argv[1]);
+	Harl harl;
+	std::string level = argv[1];
+	harl.complain(argv[1]);
 	return 0;
 }

@@ -5,70 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 07:21:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:28:38 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:27:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 10:16:09 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include <cstring>
 #include <fstream>
-
-int replace(char **argv, std::string s1)
-{
-	std::ofstream file_out;
-	int pos;
-
-	file_out.open((std::string(argv[1]) + ".replace").c_str());
-	for (int i = 0; i < (int)s1.size(); i++)
-	{
-		pos = s1.find(argv[2], i);
-		if (pos != -1 && pos == i)
-		{
-			file_out << argv[3];
-			i += std::string(argv[2]).size() - 1;
-		}
-		else
-			file_out << s1[i];
-	}
-	file_out.close();
-	return 0;
-}
-
-int argv_count(char **argv)
-{
-	int i = -1;
-
-	while (argv[++i])
-		if (!*argv[i])
-			return i;
-	return i;
-}
+#include <iostream>
 
 int main(int argc, char **argv)
 {
-	std::string s1;
-	std::string buf;
-	std::ifstream file_in;
-
-	if (argc != 4 || argv_count(argv) != 4)
+	if (argc != 4)
 	{
-		std::cout << "Wrong number of arguments." << std::endl;
+		std::cerr << "Usage: " << argv[0] << " <filename> <s1> <s2>" << std::endl;
 		return 1;
 	}
-	file_in.open(argv[1]);
-	if (file_in.fail())
+	std::string inputFilename(argv[1]);
+	std::string outputFilename(inputFilename + ".replace");
+	std::string s1(argv[2]), s2(argv[3]);
+	std::ifstream inputFile(inputFilename.c_str());
+	std::ofstream outputFile(outputFilename.c_str());
+	if (inputFile.fail() || outputFile.fail())
 	{
-		std::cout << "Error opening file." << std::endl;
+		std::cerr << argv[0] << ": error opening files." << std::endl;
 		return 1;
 	}
-	if (file_in.is_open())
+	std::string buffer = "";
+	while (!inputFile.eof())
 	{
-		while (file_in)
+		char buf[BUFSIZ];
+		std::memset(buf, 0, sizeof(buf));
+		inputFile.read(buf, sizeof(buf));
+		buffer += buf;
+	}
+	if (s1.empty())
+	{
+		outputFile << buffer;
+		return 0;
+	}
+	for (std::size_t i = 0; i < buffer.size(); i++)
+	{
+		std::size_t pos = buffer.find(s1, i);
+		if (pos != std::string::npos && pos == i)
 		{
-			std::getline(file_in, buf);
-			s1 += buf + '\n';
+			outputFile << s2;
+			i += s1.size() - 1;
 		}
+		else
+			outputFile << buffer[i];
 	}
-	file_in.close();
-	return replace(argv, s1);
+	return 0;
 }

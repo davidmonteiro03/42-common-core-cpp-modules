@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 18:40:37 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 21:55:47 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:27:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 08:32:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 int main(void)
 {
-	Zombie *zombies;
+	const int &N = 42;
+	const std::string &name = "42 Zombie ZZZZZZZ";
+	Zombie *horde = zombieHorde(N, name);
 
-	zombies = zombieHorde(5, "Zombie");
-	delete[] zombies;
+	for (int i = 0; i < N; i++)
+		horde[i].announce();
+
+	delete[] horde;
+
 	return 0;
 }

@@ -5,23 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 20:04:17 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:24:15 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 08:44:59 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 09:14:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
+#include <string>
 
 class Weapon
 {
-private:
-	std::string _type;
-
 public:
-	Weapon(std::string);
+	Weapon(void);
+	Weapon(const std::string &);
+	Weapon(const Weapon &);
+	Weapon &operator=(const Weapon &);
 	~Weapon();
-	const std::string &getType(void);
-	void setType(std::string);
+
+	const std::string &getType(void) const;
+	void setType(const std::string &);
+
+private:
+	std::string __type;
 };

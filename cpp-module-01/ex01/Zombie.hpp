@@ -5,27 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 18:25:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 21:57:23 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 07:48:22 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 10:23:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-#include <sstream>
 
 class Zombie
 {
-private:
-	std::string _name;
-
 public:
-	Zombie(std::string);
 	Zombie(void);
+	Zombie(const std::string &);
+	Zombie(const Zombie &);
+	Zombie &operator=(const Zombie &);
 	~Zombie();
-	void set_name(std::string);
+
+	const std::string &getName(void) const;
+	void setName(const std::string &);
+
 	void announce(void);
+
+private:
+	std::string __name;
 };
 
 Zombie *zombieHorde(int, std::string);

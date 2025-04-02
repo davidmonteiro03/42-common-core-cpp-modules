@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 18:25:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 21:54:38 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 07:48:22 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 10:22:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,22 @@
 
 class Zombie
 {
-private:
-	std::string _name;
-
 public:
-	Zombie(std::string);
 	Zombie(void);
+	Zombie(const std::string &);
+	Zombie(const Zombie &);
+	Zombie &operator=(const Zombie &);
 	~Zombie();
+
+	const std::string &getName(void) const;
+	void setName(const std::string &);
+
 	void announce(void);
+
+private:
+	std::string __name;
 };
 
 Zombie *newZombie(std::string);
+
 void randomChump(std::string);

@@ -5,25 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 21:15:38 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:00:09 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 08:50:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 09:14:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 
-HumanA::HumanA(std::string name, Weapon &weapon) : _name(name), _weapon(weapon)
+HumanA::HumanA(Weapon &weapon) : __weapon(weapon),
+								 __name("") {}
+
+HumanA::HumanA(const std::string &name,
+			   Weapon &weapon) : __weapon(weapon),
+								 __name(name) {}
+
+HumanA::HumanA(const HumanA &copy) : __weapon(copy.__weapon),
+									 __name(copy.__name) {}
+
+HumanA &HumanA::operator=(const HumanA &other)
 {
-	std::cout << "Human A " << name << " created with ";
-	std::cout << weapon.getType() << std::endl;
+	if (this != &other)
+	{
+		this->__weapon = other.__weapon;
+		this->__name = other.__name;
+	}
+	return *this;
 }
 
-HumanA::~HumanA() { std::cout << "Human A " << this->_name << " deleted" << std::endl; }
+HumanA::~HumanA() {}
 
-void HumanA::attack(void)
-{
-	std::cout << this->_name << " attacks with his ";
-	std::cout << this->_weapon.getType() << std::endl;
-}
-
-void HumanA::setWeapon(Weapon weapon) { this->_weapon = weapon; }
+void HumanA::attack(void) const { std::cout << this->__name << " attacks with their " << this->__weapon.getType() << std::endl; }

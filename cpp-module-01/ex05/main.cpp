@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 08:48:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:29:05 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:27:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 10:59:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,12 @@
 
 int main(void)
 {
-	std::string level;
-	Harl Harl;
+	Harl harl;
 
-	while (1)
-	{
-		std::cout << "Enter a level: ";
-		std::getline(std::cin, level);
-		if (std::cin.eof())
-		{
-			std::cout << std::endl;
-			break;
-		}
-		Harl.complain(level);
-	}
+	harl.complain("DEBUG");
+	harl.complain("INFO");
+	harl.complain("WARNING");
+	harl.complain("ERROR");
+
 	return 0;
 }

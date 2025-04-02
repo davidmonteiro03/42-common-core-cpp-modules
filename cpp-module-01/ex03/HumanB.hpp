@@ -5,24 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 21:06:30 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 22:01:13 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/02 09:03:26 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/02 09:14:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "Weapon.hpp"
+#include <iostream>
 
 class HumanB
 {
-private:
-	std::string _name;
-	Weapon *_weapon;
-
 public:
-	HumanB(std::string);
+	HumanB(void);
+	HumanB(const std::string &);
+	HumanB(const HumanB &);
+	HumanB &operator=(const HumanB &);
 	~HumanB();
-	void attack(void);
+
 	void setWeapon(Weapon &);
+
+	void attack(void) const;
+
+private:
+	Weapon *__weapon;
+	std::string __name;
 };
