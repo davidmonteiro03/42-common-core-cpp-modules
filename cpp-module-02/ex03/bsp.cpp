@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 13:04:05 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/02 14:55:18 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:57:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static Fixed ft_abs(const Fixed &f) { return f >= 0 ? f : f * -1; }
 
 static Fixed triangleArea(const Point &a, const Point &b, const Point &c)
 {
-	const Fixed &x1 = a.getX(), y1 = a.getY();
-	const Fixed &x2 = b.getX(), y2 = b.getY();
-	const Fixed &x3 = c.getX(), y3 = c.getY();
-	return ft_abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2;
+	const Fixed &___x1 = a.getX(), ___y1 = a.getY();
+	const Fixed &___x2 = b.getX(), ___y2 = b.getY();
+	const Fixed &___x3 = c.getX(), ___y3 = c.getY();
+	return ft_abs(___x1 * (___y2 - ___y3) + ___x2 * (___y3 - ___y1) + ___x3 * (___y1 - ___y2)) / 2;
 }
 
 bool bsp(Point const a, Point const b, Point const c, Point const point)
