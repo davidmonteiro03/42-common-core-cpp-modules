@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:01:44 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/02 16:08:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/03 08:01:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
 	void highFivesGuys(void);
 
 protected:
-	static const unsigned int _hitPoints = 100;
-	static const unsigned int _energyPoints = 100;
-	static const unsigned int _attackDamage = 30;
+	static const unsigned int _MAX_HIT_POINTS = 100;
+	static const unsigned int _MAX_ENERGY_POINTS = 100;
+	static const unsigned int _MAX_ATTACK_DAMAGE = 30;
 };

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:01:44 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/02 15:55:02 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/03 08:08:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ public:
 	void attack(const std::string &);
 	void guardGate(void);
 
-protected:
-	static const unsigned int _hitPoints = 100;
-	static const unsigned int _energyPoints = 50;
-	static const unsigned int _attackDamage = 20;
+private:
+	static const unsigned int __MAX_HIT_POINTS = 100;
+	static const unsigned int __MAX_ENERGY_POINTS = 50;
+	static const unsigned int __MAX_ATTACK_DAMAGE = 20;
 };

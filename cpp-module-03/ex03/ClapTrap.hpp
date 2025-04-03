@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:01:44 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/02 15:51:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/03 07:59:24 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ public:
 	void beRepaired(unsigned int);
 
 protected:
-	std::string __name;
-	unsigned int __hitPoints;
-	unsigned int __energyPoints;
-	unsigned int __attackDamage;
+	std::string _name;
+	unsigned int _hitPoints;
+	unsigned int _energyPoints;
+	unsigned int _attackDamage;
 };

@@ -5,44 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 18:25:24 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/15 23:24:08 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:27:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/03 09:16:46 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
+#include "includes/Animal.hpp"
+#include "includes/Dog.hpp"
+#include "includes/Cat.hpp"
+#include "includes/WrongAnimal.hpp"
+#include "includes/WrongCat.hpp"
 
 int main(void)
 {
-	const Animal *animal = new Animal();
-	const Animal *dog = new Dog();
-	const Animal *cat = new Cat();
+	const Animal *meta = new Animal();
+	const Animal *j = new Dog();
+	const Animal *i = new Cat();
 
-	std::cout << cat->getType() << std::endl;
-	std::cout << dog->getType() << std::endl;
+	std::cout << j->getType() << " " << std::endl;
+	std::cout << i->getType() << " " << std::endl;
+	i->makeSound();
+	j->makeSound();
+	meta->makeSound();
 
-	cat->makeSound();
-	dog->makeSound();
-	animal->makeSound();
+	delete i;
+	delete j;
+	delete meta;
 
-	delete cat;
-	delete dog;
-	delete animal;
+	const WrongAnimal *wrongAnimal = new WrongAnimal();
+	const WrongAnimal *wrongCat = new WrongCat();
 
-	const WrongAnimal *wronganimal = new WrongAnimal();
-	const WrongAnimal *wrongcat = new WrongCat();
+	std::cout << wrongCat->getType() << " " << std::endl;
+	wrongAnimal->makeSound();
+	wrongCat->makeSound();
 
-	std::cout << wrongcat->getType() << std::endl;
-	std::cout << wronganimal->getType() << std::endl;
-
-	wrongcat->makeSound();
-	wronganimal->makeSound();
-
-	delete wrongcat;
-	delete wronganimal;
+	delete wrongCat;
+	delete wrongAnimal;
 
 	return 0;
 }
