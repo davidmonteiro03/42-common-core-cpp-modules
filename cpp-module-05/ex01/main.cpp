@@ -5,365 +5,189 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 13:37:52 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/16 00:17:23 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/01 17:27:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/03 16:08:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
 #include "Form.hpp"
-#include <sstream>
 
-static void _separator(bool lines)
+static void checkConstructorsAndAssignments(void)
 {
-	if (lines)
-	{
-		std::cout << "=====================================================";
-		std::cout << "=====================================================";
-		std::cout << "=====================================================";
-	}
-	std::cout << std::endl
-			  << std::endl;
-}
-
-static void _revert(std::string *name,
-					std::string *_result, std::string *_result_rev)
-{
-	if (name)
-		*name = "wrong";
-	if (_result)
-		*_result = "KO";
-	if (_result_rev)
-		*_result_rev = "OK";
-}
-
-void _default(void)
-{
-	_separator(true);
+	std::cout << "===== DEFAULT CONSTRUCTOR =====" << std::endl;
 	try
 	{
-		std::cout << "TEST_DEFAULT_CONSTRUCTOR->_default->test => ";
-		Form test;
-		std::cout << "Success! " << std::endl
-				  << std::endl;
-		std::cout << "Result: OK!";
+		Form f;
+		std::cout << "Form: " << f << std::endl;
 	}
-	catch (std::exception &e)
+	catch (const std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl
-				  << std::endl;
-		std::cout << "Result: KO!";
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	_separator(false);
-}
+	std::cout << std::endl;
 
-void _test_default(bool result, const int signGrade, const int execGrade)
-{
-	_separator(true);
-	static int right = 0, wrong = 0;
-	std::string name = "right", _result = "OK", _result_rev = "KO";
-	std::cout << "TEST_DEFAULT_CONSTRUCTOR_2->";
-	if (!result)
-	{
-		_revert(&name, &_result, &_result_rev);
-		std::cout << name << "_" << ++wrong << " => ";
-	}
-	else
-		std::cout << name << "_" << ++right << " => ";
+	std::cout << "===== CUSTOM CONSTRUCTOR =====" << std::endl;
 	try
 	{
-		Form test(name, signGrade, execGrade);
-		std::cout << "Success!" << std::endl
-				  << std::endl;
-		std::cout << "Result: " << _result << "!";
+		Form custom("custom", 42, 42);
+		std::cout << "Form: " << custom << std::endl;
 	}
-	catch (std::exception &e)
+	catch (const std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl
-				  << std::endl;
-		std::cout << "Result: " << _result_rev << "!";
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	_separator(false);
-}
+	std::cout << std::endl;
 
-void _test_copy(void)
-{
-	Form form;
-	_separator(true);
-	std::cout << "TEST_COPY_CONSTRUCTOR => ";
+	std::cout << "===== COPY CONSTRUCTOR =====" << std::endl;
 	try
 	{
-		Form test(form);
-		std::cout << "Success! " << std::endl
-				  << std::endl;
-		if (test.getName() != form.getName() ||
-			test.getStatus() != form.getStatus() ||
-			test.getSignGrade() != form.getSignGrade() ||
-			test.getExecGrade() != form.getExecGrade())
-			std::cout << "Result: KO!";
-		else
-			std::cout << "Result: OK!";
+		Form custom("custom", 42, 42);
+		Form copy(custom);
+		std::cout << "Form: " << custom << std::endl;
+		std::cout << "Form: " << copy << std::endl;
 	}
-	catch (std::exception &e)
+	catch (const std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl
-				  << std::endl;
-		std::cout << "Result: KO!";
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	_separator(false);
-}
+	std::cout << std::endl;
 
-void _test_assignment(void)
-{
-	Form form;
-	_separator(true);
-	Form assignment("assignment", 100, 65);
-	std::cout << "TEST_ASSIGNMENT_OVERLOAD => ";
+	std::cout << "===== ASSIGNMENT OPERATOR =====" << std::endl;
 	try
 	{
-		assignment = form;
-		std::cout << "Success! " << std::endl
-				  << std::endl;
-		if (assignment.getName() != form.getName() &&
-			assignment.getSignGrade() != form.getSignGrade() &&
-			assignment.getExecGrade() != form.getExecGrade())
-			std::cout << "Result: OK!";
-		else
-			std::cout << "Result: KO!";
+		Form custom("custom", 42, 42);
+		Form other("other", 50, 50);
+		std::cout << "Form: " << custom << std::endl;
+		std::cout << "Form: " << other << std::endl;
+		other = custom;
+		std::cout << "Form: " << custom << std::endl;
+		std::cout << "Form: " << other << std::endl;
 	}
-	catch (std::exception &e)
+	catch (const std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl
-				  << std::endl;
-		std::cout << "Result: KO!";
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	_separator(false);
+	std::cout << std::endl;
 }
 
-void _test_sign(bool result_bc, bool result_form, const int grade,
-				int *right_bc, int *wrong_bc, int *right_form, int *wrong_form)
+static void checkExceptions(void)
 {
-	_separator(true);
-	std::string name_bc = "right", _result_bc = "OK", _result_bc_rev = "KO";
-	std::stringstream bc_name;
-	std::cout << "TEST_SIGNING->";
-	if (!result_bc)
-	{
-		_revert(&name_bc, &_result_bc, &_result_bc_rev);
-		bc_name << name_bc << "_" << ++(*wrong_bc);
-	}
-	else
-		bc_name << name_bc << "_" << ++(*right_bc);
-	std::cout << bc_name.str();
+	std::cout << "===== GRADE TO SIGN TOO LOW EXCEPTION =====" << std::endl;
 	try
 	{
-		Bureaucrat test(bc_name.str(), grade);
-		std::string name_form = "right";
-		std::stringstream form_name;
-		if (!result_form)
-		{
-			_revert(&name_form, NULL, NULL);
-			form_name << name_form << "_" << ++(*wrong_form);
-			std::cout << "->" << form_name.str() << " => ";
-			Form form(form_name.str(), 80, 50);
-			test.signForm(form);
-			std::cout << std::endl
-					  << std::endl;
-			std::cout << "Result: ";
-			if (!form.getStatus())
-				std::cout << "OK";
-			else
-				std::cout << "KO";
-			std::cout << "!";
-		}
-		else
-		{
-			form_name << name_form << "_" << ++(*right_form);
-			std::cout << "->" << form_name.str() << " => ";
-			Form form(form_name.str(), 80, 50);
-			test.signForm(form);
-			std::cout << std::endl
-					  << std::endl;
-			std::cout << "Result: ";
-			if (form.getStatus())
-				std::cout << "OK";
-			else
-				std::cout << "KO";
-			std::cout << "!";
-		}
+		Form gradeToSignTooLow("grade to sign too low", 151, 1);
+		std::cout << "Form: " << gradeToSignTooLow << std::endl;
 	}
-	catch (std::exception &e)
+	catch (const std::exception &e)
 	{
-		std::cout << " => Error! " << e.what() << std::endl
-				  << std::endl;
-		std::cout << "Result: " << _result_bc_rev << "!";
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	_separator(false);
-}
+	std::cout << std::endl;
 
-void _test_double_sign_1(void)
-{
-	_separator(true);
-	Form form("form", 80, 40);
-	Bureaucrat bc_1("bc_1", 80);
-	std::cout << "TEST_DOUBLE_SIGNING->form_1->bc_1->sign_first => ";
+	std::cout << "===== GRADE TO SIGN TOO HIGH EXCEPTION =====" << std::endl;
 	try
 	{
-		form.beSigned(bc_1);
-		std::cout << "Success!" << std::endl
-				  << std::endl;
-		std::cout << "Result: OK!" << std::endl
-				  << std::endl;
-		std::cout << "TEST_DOUBLE_SIGNING->form_1->bc_1->sign_again => ";
-		try
-		{
-			form.beSigned(bc_1);
-			std::cout << "Success!" << std::endl
-					  << std::endl;
-			std::cout << "Result: KO!";
-		}
-		catch (std::exception &e)
-		{
-			std::cout << "Error! " << e.what() << std::endl
-					  << std::endl;
-			std::cout << "Result: OK!";
-		}
+		Form gradeToSignTooHigh("grade to sign too high", 0, 1);
+		std::cout << "Form: " << gradeToSignTooHigh << std::endl;
 	}
-	catch (std::exception &e)
+	catch (const std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl
-				  << std::endl;
-		std::cout << "Result: KO!";
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	_separator(false);
-}
+	std::cout << std::endl;
 
-void _test_double_sign_2(void)
-{
-	_separator(true);
-	Form form("form", 80, 40);
-	Bureaucrat bc_1("bc_1", 80);
-	Bureaucrat bc_2("bc_2", 80);
-	std::cout << "TEST_DOUBLE_SIGNING->form_2->bc_1->sign_first => ";
+	std::cout << "===== GRADE TO EXECUTE TOO LOW EXCEPTION =====" << std::endl;
 	try
 	{
-		form.beSigned(bc_1);
-		std::cout << "Success!" << std::endl
-				  << std::endl;
-		std::cout << "Result: OK!" << std::endl
-				  << std::endl;
-		std::cout << "TEST_DOUBLE_SIGNING->form_2->bc_2->sign_first => ";
-		try
-		{
-			form.beSigned(bc_2);
-			std::cout << "Success!" << std::endl
-					  << std::endl;
-			std::cout << "Result: KO!";
-		}
-		catch (std::exception &e)
-		{
-			std::cout << "Error! " << e.what() << std::endl
-					  << std::endl;
-			std::cout << "Result: OK!";
-		}
+		Form gradeToExecuteTooLow("grade to sign too low", 1, 151);
+		std::cout << "Form: " << gradeToExecuteTooLow << std::endl;
 	}
-	catch (std::exception &e)
+	catch (const std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl
-				  << std::endl;
-		std::cout << "Result: KO!";
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	_separator(false);
-}
+	std::cout << std::endl;
 
-void _test_double_sign_3(void)
-{
-	_separator(true);
-	Form form("form", 80, 40);
-	Bureaucrat bc_1("bc_1", 81);
-	Bureaucrat bc_2("bc_2", 80);
-	std::cout << "TEST_DOUBLE_SIGNING->form_3->bc_1->sign_first => ";
+	std::cout << "===== GRADE TO EXECUTE TOO HIGH EXCEPTION =====" << std::endl;
 	try
 	{
-		form.beSigned(bc_1);
-		std::cout << "Success!" << std::endl
-				  << std::endl;
-		std::cout << "Result: KO!";
+		Form gradeToExecuteTooHigh("grade to sign too high", 1, 0);
+		std::cout << "Form: " << gradeToExecuteTooHigh << std::endl;
 	}
-	catch (std::exception &e)
+	catch (const std::exception &e)
 	{
-		std::cout << "Error! " << e.what() << std::endl
-				  << std::endl;
-		std::cout << "Result: OK!" << std::endl
-				  << std::endl;
-		std::cout << "TEST_DOUBLE_SIGNING->form_3->bc_2->sign_first => ";
-		try
-		{
-			form.beSigned(bc_2);
-			std::cout << "Success!" << std::endl
-					  << std::endl;
-			std::cout << "Result: OK!";
-		}
-		catch (std::exception &e)
-		{
-			std::cout << "Error! " << e.what() << std::endl
-					  << std::endl;
-			std::cout << "Result: KO!" << std::endl
-					  << std::endl;
-		}
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	_separator(false);
+	std::cout << std::endl;
 }
 
-void _test_double_sign(void)
+static void checkSigning(void)
 {
-	_test_double_sign_1();
-	_test_double_sign_2();
-	_test_double_sign_3();
+	std::cout << "===== GOOD GRADE TO SIGN =====" << std::endl;
+	{
+		Bureaucrat ___b("___b", 42);
+		Form ___f("___f", 42, 42);
+		std::cout << "Bureaucrat: " << ___b << std::endl;
+		std::cout << "Form: " << ___f << std::endl;
+		___b.signForm(___f);
+	}
+	std::cout << std::endl;
+
+	std::cout << "===== BAD GRADE TO SIGN =====" << std::endl;
+	{
+		Bureaucrat ___b("___b", 43);
+		Form ___f("___f", 42, 42);
+		std::cout << "Bureaucrat: " << ___b << std::endl;
+		std::cout << "Form: " << ___f << std::endl;
+		___b.signForm(___f);
+	}
+	std::cout << std::endl;
+
+	std::cout << "===== BAD TO GOOD GRADE TO SIGN =====" << std::endl;
+	{
+		Bureaucrat ___b("___b", 5);
+		Form ___f("___f", 1, 1);
+		std::cout << "Bureaucrat: " << ___b << std::endl;
+		std::cout << "Form: " << ___f << std::endl;
+		std::cout << std::endl;
+		while (true)
+		{
+			___b.signForm(___f);
+			if (___f.getIsSigned() == true)
+				break;
+			___b.incrementGrade();
+			std::cout << "Bureaucrat: " << ___b << std::endl;
+			std::cout << std::endl;
+		}
+		std::cout << std::endl;
+		std::cout << "Form: " << ___f << std::endl;
+	}
+	std::cout << std::endl;
+
+	std::cout << "===== GOOD TO BAD GRADE TO SIGN =====" << std::endl;
+	{
+		Bureaucrat ___b("___b", 1);
+		Form ___f("___f", 5, 1);
+		std::cout << "Bureaucrat: " << ___b << std::endl;
+		std::cout << "Form: " << ___f << std::endl;
+		std::cout << std::endl;
+		while (___b.getGrade() <= ___f.getGradeToSign())
+		{
+			___b.decrementGrade();
+			std::cout << "Bureaucrat: " << ___b << std::endl;
+		}
+		std::cout << std::endl;
+		___b.signForm(___f);
+		std::cout << std::endl;
+		std::cout << "Form: " << ___f << std::endl;
+	}
+	std::cout << std::endl;
 }
 
 int main(void)
 {
-	// TEST_DEFAULT_CONSTRUCTOR
-	_default();
-	// TEST_DEFAULT_CONSTRUCTOR_2
-	_test_default(false, 0, 0);		//  high | high  -> invalid => false
-	_test_default(false, 0, 1);		//  high | valid -> invalid => false
-	_test_default(false, 0, 150);	//  high | valid -> invalid => false
-	_test_default(false, 0, 151);	//  high | low   -> invalid => false
-	_test_default(false, 1, 0);		// valid | high  -> invalid => false
-	_test_default(true, 1, 1);		// valid | valid ->   valid => true
-	_test_default(true, 1, 150);	// valid | valid ->   valid => true
-	_test_default(false, 1, 151);	// valid | low   -> invalid => false
-	_test_default(false, 150, 0);	// valid | high  -> invalid => false
-	_test_default(true, 150, 1);	// valid | valid ->   valid => true
-	_test_default(true, 150, 150);	// valid | valid ->   valid => true
-	_test_default(false, 150, 151); // valid | low   -> invalid => false
-	_test_default(false, 151, 0);	//   low | high  -> invalid => false
-	_test_default(false, 151, 1);	//   low | valid -> invalid => false
-	_test_default(false, 151, 150); //   low | valid -> invalid => false
-	_test_default(false, 151, 151); //   low | low   -> invalid => false
-	// TEST_COPY_CONSTRUCTOR
-	_test_copy();
-	// TEST_ASSIGNMENT_OVERLOAD
-	_test_assignment();
-	// TEST_SIGNING
-	// NOTE: lowest note possible is 80
-	int right_bc = 0, wrong_bc = 0;
-	int right_form = 0, wrong_form = 0;
-	_test_sign(false, false, 0,
-			   &right_bc, &wrong_bc, &right_form, &wrong_form);
-	_test_sign(true, true, 1,
-			   &right_bc, &wrong_bc, &right_form, &wrong_form);
-	_test_sign(true, true, 80,
-			   &right_bc, &wrong_bc, &right_form, &wrong_form);
-	_test_sign(true, false, 81,
-			   &right_bc, &wrong_bc, &right_form, &wrong_form);
-	_test_sign(true, false, 150,
-			   &right_bc, &wrong_bc, &right_form, &wrong_form);
-	_test_sign(false, false, 151,
-			   &right_bc, &wrong_bc, &right_form, &wrong_form);
-	// TEST_DOUBLE_SIGNING (test only if your Form class has a AlreadySignedException)
-	_test_double_sign();
+	checkConstructorsAndAssignments();
+	checkExceptions();
+	checkSigning();
 	return 0;
 }

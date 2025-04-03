@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 07:58:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/16 08:40:23 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/03 16:15:44 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/03 17:22:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@
 
 class ShrubberyCreationForm : public AForm
 {
-private:
-	std::string _target;
-
 public:
-	ShrubberyCreationForm();
-	ShrubberyCreationForm(const std::string);
+	ShrubberyCreationForm(void);
+	ShrubberyCreationForm(const std::string &);
 	ShrubberyCreationForm(const ShrubberyCreationForm &);
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &);
 	~ShrubberyCreationForm();
-	std::string getTarget(void) const;
-	void execute(Bureaucrat const &) const;
+
+	void execute(const Bureaucrat &) const;
+
+private:
+	static const unsigned int __GRADE_TO_SIGN;
+	static const unsigned int __GRADE_TO_EXECUTE;
+	std::string __target;
 };

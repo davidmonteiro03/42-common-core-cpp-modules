@@ -5,57 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 13:39:09 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/16 08:30:44 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/03 14:59:18 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/03 17:12:09 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "Bureaucrat.hpp"
+#include <iostream>
+#include <string>
+#include <exception>
 
 class Bureaucrat;
 
 class AForm
 {
-private:
-	const std::string _name;
-	bool _status;
-	const int _signGrade;
-	const int _execGrade;
-
 public:
-	AForm();
-	AForm(const std::string, const int, const int);
+	AForm(void);
+	AForm(const std::string &,
+		  const unsigned int &,
+		  const unsigned int &);
 	AForm(const AForm &);
 	AForm &operator=(const AForm &);
 	virtual ~AForm();
-	const std::string getName(void) const;
-	bool getStatus(void) const;
-	int getSignGrade(void) const;
-	int getExecGrade(void) const;
-	virtual void execute(Bureaucrat const &) const = 0;
+
+	const std::string &getName(void) const;
+	const bool &getIsSigned(void) const;
+	const unsigned int &getGradeToSign(void) const;
+	const unsigned int &getGradeToExecute(void) const;
+
+	void beSigned(Bureaucrat &);
+
+	virtual void execute(const Bureaucrat &) const = 0;
+
 	class GradeTooHighException : public std::exception
 	{
 	public:
 		virtual const char *what() const throw();
 	};
+
 	class GradeTooLowException : public std::exception
 	{
 	public:
 		virtual const char *what() const throw();
 	};
-	class AlreadySignedException : public std::exception
+
+	class FormNotSignedException : public std::exception
 	{
 	public:
 		virtual const char *what() const throw();
 	};
-	class UnsignedFormException : public std::exception
-	{
-	public:
-		virtual const char *what() const throw();
-	};
-	void beSigned(Bureaucrat &);
+
+private:
+	static const unsigned int __HIGHEST_GRADE;
+	static const unsigned int __LOWEST_GRADE;
+	const std::string __name;
+	bool __isSigned;
+	const unsigned int __gradeToSign;
+	const unsigned int __gradeToExecute;
+
+	static void __checkGrade(const unsigned int &);
 };
 
 std::ostream &operator<<(std::ostream &, const AForm &);
