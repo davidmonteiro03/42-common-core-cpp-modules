@@ -6,19 +6,30 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 09:31:11 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/03 11:46:07 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:56:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/interface.hpp"
 
-Character::Character(void) { std::memset(this->__inventory, 0, sizeof(this->__inventory)); }
+Character::Character(void) : __name("") { std::memset(this->__inventory, 0, sizeof(this->__inventory)); }
 
 Character::Character(const std::string &name) : __name(name) { std::memset(this->__inventory, 0, sizeof(this->__inventory)); }
 
 Character::Character(const Character &copy) : __name(copy.__name) { std::memcpy(this->__inventory, copy.__inventory, sizeof(this->__inventory)); }
 
-Character &Character::operator=(const Character &) { return *this; }
+Character &Character::operator=(const Character &other)
+{
+	if (this != &other)
+	{
+		this->__name = other.__name;
+		for (std::size_t i = 0; i < Character::__MAX_SLOTS; i++)
+			if (this->__inventory[i] != NULL)
+				delete this->__inventory[i];
+		std::memcpy(this->__inventory, other.__inventory, sizeof(this->__inventory));
+	}
+	return *this;
+}
 
 Character::~Character()
 {
