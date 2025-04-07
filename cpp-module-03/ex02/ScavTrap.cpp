@@ -6,11 +6,15 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:05:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/03 08:08:19 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/07 08:39:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+
+const unsigned int ScavTrap::__MAX_HIT_POINTS = 100;
+const unsigned int ScavTrap::__MAX_ENERGY_POINTS = 50;
+const unsigned int ScavTrap::__MAX_ATTACK_DAMAGE = 20;
 
 ScavTrap::ScavTrap(void) : ClapTrap()
 {

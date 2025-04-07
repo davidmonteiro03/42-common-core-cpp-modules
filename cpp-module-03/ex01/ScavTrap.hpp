@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:01:44 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/03 08:08:34 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/07 08:38:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ public:
 	void guardGate(void);
 
 private:
-	static const unsigned int __MAX_HIT_POINTS = 100;
-	static const unsigned int __MAX_ENERGY_POINTS = 50;
-	static const unsigned int __MAX_ATTACK_DAMAGE = 20;
+	static const unsigned int __MAX_HIT_POINTS;
+	static const unsigned int __MAX_ENERGY_POINTS;
+	static const unsigned int __MAX_ATTACK_DAMAGE;
 };

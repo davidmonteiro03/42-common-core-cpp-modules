@@ -6,17 +6,19 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:23:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/02 14:45:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/07 08:37:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
+const int Fixed::__fractionalBits = 8;
+
 Fixed::Fixed(void) : __value(0) {}
 
-Fixed::Fixed(const int &value) : __value(value << this->__fractionalBits) {}
+Fixed::Fixed(const int &value) : __value(value << Fixed::__fractionalBits) {}
 
-Fixed::Fixed(const float &value) : __value(roundf(value * (1 << this->__fractionalBits))) {}
+Fixed::Fixed(const float &value) : __value(roundf(value * (1 << Fixed::__fractionalBits))) {}
 
 Fixed::Fixed(const Fixed &copy) { *this = copy; }
 
@@ -33,9 +35,9 @@ int Fixed::getRawBits(void) const { return this->__value; }
 
 void Fixed::setRawBits(int const raw) { this->__value = raw; }
 
-float Fixed::toFloat(void) const { return float(this->__value) / float(1 << this->__fractionalBits); }
+float Fixed::toFloat(void) const { return float(this->__value) / float(1 << Fixed::__fractionalBits); }
 
-int Fixed::toInt(void) const { return this->__value >> this->__fractionalBits; }
+int Fixed::toInt(void) const { return this->__value >> Fixed::__fractionalBits; }
 
 bool Fixed::operator>(const Fixed &other) const { return this->toFloat() > other.toFloat(); }
 

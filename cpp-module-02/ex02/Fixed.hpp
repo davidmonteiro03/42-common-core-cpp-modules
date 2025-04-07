@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:20:47 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/02 14:45:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/07 08:36:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ public:
 
 private:
 	int __value;
-	static const int __fractionalBits = 8;
+	static const int __fractionalBits;
 };
 
 std::ostream &operator<<(std::ostream &, const Fixed &);

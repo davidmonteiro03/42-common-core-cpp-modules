@@ -6,13 +6,13 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 17:23:24 by dcaetano          #+#    #+#              #
-#    Updated: 2025/04/07 08:53:58 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/04/07 10:14:22 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # === BINARY ================================================================= #
 
-NAME      = form
+NAME      = intern
 LIB       = $(NAME).a
 
 # === COMMANDS =============================================================== #
@@ -36,7 +36,8 @@ OBJ_EXT   = .o
 
 # === FILES ================================================================== #
 
-CLASSES   = Bureaucrat Form
+CLASSES   = Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm \
+            PresidentialPardonForm Intern
 CPPFILES  = $(CLASSES)
 HPPFILES  = $(CLASSES)
 

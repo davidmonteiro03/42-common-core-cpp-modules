@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 17:23:24 by dcaetano          #+#    #+#              #
-#    Updated: 2025/04/03 16:50:51 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/04/07 10:14:31 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ OBJ_EXT   = .o
 
 # === FILES ================================================================== #
 
-CLASSES   = Bureaucrat AForm ShrubberyCreationForm
+CLASSES   = Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm \
+            PresidentialPardonForm
 CPPFILES  = $(CLASSES)
 HPPFILES  = $(CLASSES)
 
@@ -67,23 +68,26 @@ all: $(NAME)
 
 $(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS)
 	@$(MK) $(MK_FLAGS) $(dir $@) > /dev/null 2>&1
-	@$(CPP) $(CPP_FLAGS) -c $< -o $@ #> /dev/null 2>&1
+	@$(CPP) $(CPP_FLAGS) -c $< -o $@ > /dev/null 2>&1
 
 $(OBJS_D)/$(SRCS_D)/%$(OBJ_EXT): $(SRCS_D)/%$(CPP_EXT) $(INCS)
 	@$(MK) $(MK_FLAGS) $(dir $@) > /dev/null 2>&1
-	@$(CPP) $(CPP_FLAGS) -c $< -o $@ #> /dev/null 2>&1
+	@$(CPP) $(CPP_FLAGS) -c $< -o $@ > /dev/null 2>&1
 
 $(LIB): $(OBJS)
-	@$(AR_RCS) $(LIB) $(OBJS) #> /dev/null 2>&1
+	@$(AR_RCS) $(LIB) $(OBJS) > /dev/null 2>&1
 
 $(NAME): $(LIB) $(MAIN_OBJ)
-	@$(CPP) $(CPP_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME) #> /dev/null 2>&1
+	@$(CPP) $(CPP_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME) > /dev/null 2>&1
 
 clean:
 	@$(RM) $(RM_FLAGS) $(OBJS_D)
 
 fclean: clean
 	@$(RM) $(RM_FLAGS) $(NAME) $(LIB)
+
+# fdelete:
+# 	@find . -type f -name "*_shrubbery" -delete
 
 re: fclean all
 

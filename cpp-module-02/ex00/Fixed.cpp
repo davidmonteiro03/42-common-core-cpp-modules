@@ -6,11 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:23:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/02 11:30:22 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/07 08:35:41 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+const int Fixed::__fractionalBits = 8;
 
 Fixed::Fixed(void) : __value(0) { std::cout << "Default constructor called" << std::endl; }
 

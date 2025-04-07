@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 08:43:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/03 08:46:46 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/07 08:43:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ public:
 	~Brain();
 
 private:
-	std::string __ideas[100];
+	static const std::size_t __MAX_IDEAS = 100;
+	std::string __ideas[__MAX_IDEAS];
 };
