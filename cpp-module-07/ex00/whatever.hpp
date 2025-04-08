@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 11:40:37 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/16 09:27:39 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/08 18:35:53 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/08 18:42:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void swap(T &a, T &b)
 }
 
 template <typename T>
-T min(T a, T b) { return a < b ? a : b; }
+const T &max(const T &a, const T &b) { return a > b ? a : b; }
 
 template <typename T>
-T max(T a, T b) { return a > b ? a : b; }
+const T &min(const T &a, const T &b) { return a < b ? a : b; }

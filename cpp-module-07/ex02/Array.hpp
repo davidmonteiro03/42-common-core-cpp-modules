@@ -5,61 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 12:38:58 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/16 09:30:35 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/08 18:35:53 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/08 19:35:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <stdexcept>
+#include <cstring>
+#include <exception>
 
 template <typename T>
 class Array
 {
-private:
-	unsigned int _size;
-	T *_array;
-
 public:
-	Array() : _size(0) { _array = new T[_size]; }
-	Array(unsigned int n) : _size(n) { _array = new T[_size]; }
-	Array(const Array &copy)
-	{
-		_array = NULL;
-		*this = copy;
-	}
-	Array &operator=(const Array &other)
-	{
-		if (_array)
-			delete[] _array;
-		if (other.size() != 0)
-		{
-			_size = other.size();
-			_array = new T[_size];
-			for (unsigned int i = 0; i < _size; i++)
-				_array[i] = other._array[i];
-		}
-		return *this;
-	}
-	~Array()
-	{
-		if (_array)
-			delete[] _array;
-	}
-	T &operator[](unsigned int index)
-	{
-		if (index >= _size || !_array)
-			throw InvalidIndexException();
-		return _array[index];
-	}
-	unsigned int size(void) const { return _size; }
-	class InvalidIndexException : public std::exception
+	Array(void);
+	Array(const unsigned int &);
+	Array(const Array &);
+	Array &operator=(const Array &);
+	~Array();
+
+	T &operator[](const unsigned int &);
+
+	const unsigned int &size(void) const;
+
+	class IndexOutOfBoundsException : public std::exception
 	{
 	public:
 		virtual const char *what() const throw();
 	};
+
+private:
+	T *__data;
+	unsigned int __size;
 };
 
-template <typename T>
-const char *Array<T>::InvalidIndexException::what() const throw() { return "Array<T>: InvalidIndexException"; }
+#include "Array.tpp"
