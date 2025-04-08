@@ -6,13 +6,13 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 17:23:24 by dcaetano          #+#    #+#              #
-#    Updated: 2025/04/08 17:37:00 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/04/08 18:03:10 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # === BINARY ================================================================= #
 
-NAME      = convert
+NAME      = serialize
 LIB       = $(NAME).a
 
 # === COMMANDS =============================================================== #
@@ -36,7 +36,7 @@ OBJ_EXT   = .o
 
 # === FILES ================================================================== #
 
-CLASSES   = ScalarConverter
+CLASSES   = Serializer
 CPPFILES  = $(CLASSES)
 HPPFILES  = $(CLASSES)
 

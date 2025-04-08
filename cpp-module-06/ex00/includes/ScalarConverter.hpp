@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 10:33:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/08 16:45:41 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:56:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,6 @@ private:
 	static void __showInt(const int &);
 	static void __showFloat(const float &);
 	static void __showDouble(const double &);
+
+	static void __showPseudoLiteral(const std::string &);
 };

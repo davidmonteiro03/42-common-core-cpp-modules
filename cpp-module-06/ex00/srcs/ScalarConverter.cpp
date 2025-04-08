@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 10:35:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/08 16:46:08 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:58:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void ScalarConverter::__showInt(const int &i)
 	std::cout.precision(std::numeric_limits<double>::digits10);
 	if (i < static_cast<int>(std::numeric_limits<char>::min()) ||
 		i > static_cast<int>(std::numeric_limits<char>::max()))
-		std::cout << "char: Impossible" << std::endl;
+		std::cout << "char: impossible" << std::endl;
 	else if (!std::isprint(i))
 		std::cout << "char: Non displayable" << std::endl;
 	else
@@ -145,16 +145,18 @@ void ScalarConverter::__showInt(const int &i)
 void ScalarConverter::__showFloat(const float &f)
 {
 	std::cout.precision(std::numeric_limits<double>::digits10);
-	if (f < static_cast<float>(std::numeric_limits<char>::min()) ||
+	if (std::isnan(f) ||
+		f < static_cast<float>(std::numeric_limits<char>::min()) ||
 		f > static_cast<float>(std::numeric_limits<char>::max()))
-		std::cout << "char: Impossible" << std::endl;
+		std::cout << "char: impossible" << std::endl;
 	else if (!std::isprint(static_cast<int>(f)))
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
-	if (f < static_cast<float>(std::numeric_limits<int>::min()) ||
+	if (std::isnan(f) ||
+		f < static_cast<float>(std::numeric_limits<int>::min()) ||
 		f > static_cast<float>(std::numeric_limits<int>::max()))
-		std::cout << "int: Impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(f) << std::endl;
 	std::cout << "float: " << f;
@@ -170,19 +172,21 @@ void ScalarConverter::__showFloat(const float &f)
 void ScalarConverter::__showDouble(const double &d)
 {
 	std::cout.precision(std::numeric_limits<double>::digits10);
-	if (d < static_cast<double>(std::numeric_limits<char>::min()) ||
+	if (std::isnan(d) ||
+		d < static_cast<double>(std::numeric_limits<char>::min()) ||
 		d > static_cast<double>(std::numeric_limits<char>::max()))
-		std::cout << "char: Impossible" << std::endl;
+		std::cout << "char: impossible" << std::endl;
 	else if (!std::isprint(static_cast<int>(d)))
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
-	if (d < static_cast<double>(std::numeric_limits<int>::min()) ||
+	if (std::isnan(d) ||
+		d < static_cast<double>(std::numeric_limits<int>::min()) ||
 		d > static_cast<double>(std::numeric_limits<int>::max()))
-		std::cout << "int: Impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(d) << std::endl;
-	std::cout << "float: " << static_cast<float>(d);
+	std::cout << "float: " << d;
 	if (std::fmod(static_cast<float>(d), 1.0f) == 0.0f)
 		std::cout << ".0";
 	std::cout << "f" << std::endl;
@@ -190,6 +194,27 @@ void ScalarConverter::__showDouble(const double &d)
 	if (std::fmod(d, 1.0) == 0.0)
 		std::cout << ".0";
 	std::cout << std::endl;
+}
+
+void ScalarConverter::__showPseudoLiteral(const std::string &input)
+{
+	std::stringstream inputSs(input);
+	std::string literal = "";
+	if (!(inputSs >> literal))
+		return std::cerr << "Convertion is impossible." << std::endl, void(0);
+	const std::pair<std::string, float> floatPseudos[3] = {std::make_pair<std::string, float>("-inff", -std::numeric_limits<float>::infinity()),
+														   std::make_pair<std::string, float>("+inff", std::numeric_limits<float>::infinity()),
+														   std::make_pair<std::string, float>("nanf", std::numeric_limits<float>::quiet_NaN())};
+	const std::pair<std::string, double> doublePseudos[3] = {std::make_pair<std::string, double>("-inf", -std::numeric_limits<double>::infinity()),
+															 std::make_pair<std::string, double>("+inf", std::numeric_limits<double>::infinity()),
+															 std::make_pair<std::string, double>("nan", std::numeric_limits<double>::quiet_NaN())};
+	for (std::size_t i = 0; i < 3; i++)
+		if (floatPseudos[i].first == literal)
+			return ScalarConverter::__showFloat(floatPseudos[i].second);
+	for (std::size_t i = 0; i < 3; i++)
+		if (doublePseudos[i].first == literal)
+			return ScalarConverter::__showDouble(doublePseudos[i].second);
+	return std::cerr << "Convertion is impossible." << std::endl, void(0);
 }
 
 void ScalarConverter::convert(const std::string &input)
@@ -225,4 +250,5 @@ void ScalarConverter::convert(const std::string &input)
 			return std::cerr << "Convertion is impossible." << std::endl, void(0);
 		return ScalarConverter::__showDouble(d);
 	}
+	ScalarConverter::__showPseudoLiteral(input);
 }
