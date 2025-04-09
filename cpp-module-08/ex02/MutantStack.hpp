@@ -5,14 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 07:37:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/02/16 09:47:13 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/09 11:01:31 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/09 11:35:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
 #include <stack>
 
 template <typename T>
@@ -24,12 +23,21 @@ public:
 	typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;
 	typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator;
 
-	iterator begin() { return this->c.begin(); }
-	iterator end() { return this->c.end(); }
-	const_iterator begin() const { return this->c.begin(); }
-	const_iterator end() const { return this->c.end(); }
-	reverse_iterator rbegin() { return this->c.rbegin(); }
-	reverse_iterator rend() { return this->c.rend(); }
-	const_reverse_iterator rbegin() const { return this->c.rbegin(); }
-	const_reverse_iterator rend() const { return this->c.rend(); }
+	iterator begin(void);
+	iterator end(void);
+
+	const_iterator begin(void) const;
+	const_iterator end(void) const;
+	const_iterator cbegin(void) const;
+	const_iterator cend(void) const;
+
+	reverse_iterator rbegin(void);
+	reverse_iterator rend(void);
+
+	const_reverse_iterator rbegin(void) const;
+	const_reverse_iterator rend(void) const;
+	const_reverse_iterator crbegin(void) const;
+	const_reverse_iterator crend(void) const;
 };
+
+#include "MutantStack.tpp"

@@ -5,42 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 18:43:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/08 14:41:41 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/09 09:31:53 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/09 10:24:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
-#include <algorithm>
 #include <vector>
-#include <stdexcept>
+#include <exception>
+#include <algorithm>
 
 class Span
 {
-private:
-	unsigned int _length;
-	std::vector<int> _storage;
-
 public:
-	Span();
-	Span(unsigned int);
+	Span(void);
+	Span(const unsigned int &);
 	Span(const Span &);
 	Span &operator=(const Span &);
-	virtual ~Span();
-	void addNumber(int);
+	~Span();
+
+	void addNumber(const int &);
+
 	int shortestSpan(void) const;
 	int longestSpan(void) const;
-	void addNumberRange(std::vector<int>::iterator, std::vector<int>::iterator);
-	class VectorIsFullException : public std::exception
+
+	void addNumberRange(std::vector<int>::iterator,
+						std::vector<int>::iterator);
+
+	class SpanIsFullException : public std::exception
 	{
 	public:
 		virtual const char *what() const throw();
 	};
-	class TooFewElementsException : public std::exception
+
+	class SpanTooSmallException : public std::exception
 	{
 	public:
 		virtual const char *what() const throw();
 	};
+
+private:
+	std::vector<int> __data;
+	unsigned int __maxSize;
 };

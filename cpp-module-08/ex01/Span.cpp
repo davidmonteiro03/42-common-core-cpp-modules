@@ -5,81 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 18:50:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/03/08 14:41:39 by dcaetano         ###   ########.fr       */
+/*   Created: 2025/04/09 09:34:58 by dcaetano          #+#    #+#             */
+/*   Updated: 2025/04/09 10:58:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span() : _length(0), _storage(0) {}
+Span::Span(void) : __data(),
+				   __maxSize(0) {}
 
-Span::Span(unsigned int N) : _length(N), _storage(std::vector<int>()) {}
+Span::Span(const unsigned int &N) : __data(),
+									__maxSize(N) {}
 
-Span::Span(const Span &copy) : _length(copy._length)
-{
-	_storage.clear();
-	_storage = copy._storage;
-}
+Span::Span(const Span &copy) : __data(copy.__data),
+							   __maxSize(copy.__maxSize) {}
 
 Span &Span::operator=(const Span &other)
 {
 	if (this != &other)
 	{
-		_length = other._length;
-		_storage = other._storage;
+		this->__data = other.__data;
+		this->__maxSize = other.__maxSize;
 	}
 	return *this;
 }
 
 Span::~Span() {}
 
-void Span::addNumber(int value)
+void Span::addNumber(const int &n)
 {
-	if (_storage.size() == _length)
-		throw VectorIsFullException();
-	_storage.push_back(value);
-}
-
-void Span::addNumberRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
-{
-	int dist = std::distance(begin, end);
-	if (dist <= 0)
-		return;
-	while (begin != end)
-	{
-		if (_storage.size() == _length)
-			return;
-		_storage.push_back(*begin++);
-	}
+	if (this->__data.size() == this->__maxSize)
+		throw Span::SpanIsFullException();
+	this->__data.push_back(n);
 }
 
 int Span::shortestSpan(void) const
 {
-	if (_storage.size() <= 1)
-		throw TooFewElementsException();
-	std::vector<int> tmp(_storage);
+	if (this->__data.size() < 2)
+		throw Span::SpanTooSmallException();
+	std::vector<int> tmp(this->__data);
 	std::sort(tmp.begin(), tmp.end());
-	int min = tmp[0];
-	for (size_t i = 0; i < tmp.size() - 1; i++)
-	{
-		int curr = tmp[i], next = tmp[i + 1];
-		if (next - curr < min)
-			min = next - curr;
-	}
+	int min = tmp[1] - tmp[0];
+	for (std::size_t i = 0; i < tmp.size() - 1; i++)
+		min = std::min(min, tmp[i + 1] - tmp[i]);
 	return min;
 }
 
 int Span::longestSpan(void) const
 {
-	if (_storage.size() <= 1)
-		throw TooFewElementsException();
-	std::vector<int>::const_iterator min, max;
-	min = std::min_element(_storage.begin(), _storage.end());
-	max = std::max_element(_storage.begin(), _storage.end());
+	if (this->__data.size() < 2)
+		throw Span::SpanTooSmallException();
+	std::vector<int>::const_iterator max = std::max_element(this->__data.begin(), this->__data.end());
+	std::vector<int>::const_iterator min = std::min_element(this->__data.begin(), this->__data.end());
 	return *max - *min;
 }
 
-const char *Span::VectorIsFullException::what() const throw() { return "Span: VectorIsFullException"; }
+void Span::addNumberRange(std::vector<int>::iterator begin,
+						  std::vector<int>::iterator end)
+{
+	while (begin != end && this->__data.size() < this->__maxSize)
+		this->__data.push_back(*begin++);
+}
 
-const char *Span::TooFewElementsException::what() const throw() { return "Span: TooFewElementsException"; }
+const char *Span::SpanIsFullException::what() const throw() { return "span is full"; }
+
+const char *Span::SpanTooSmallException::what() const throw() { return "span too small"; }
