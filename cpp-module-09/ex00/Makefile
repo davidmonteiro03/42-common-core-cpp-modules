@@ -5,64 +5,82 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/22 10:09:29 by dcaetano          #+#    #+#              #
-#    Updated: 2025/02/16 09:52:36 by dcaetano         ###   ########.fr        #
+#    Created: 2025/04/01 17:23:24 by dcaetano          #+#    #+#              #
+#    Updated: 2025/04/11 14:51:34 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+# === BINARY ================================================================= #
+
+NAME      = btc
+LIB       = $(NAME).a
+
 # === COMMANDS =============================================================== #
-RM            = rm
-AR_RCS        = ar rcs
-MKDIR         = mkdir
-CXX           = c++
+
+CPP       = c++
+MK        = mkdir
+RM        = rm
+AR_RCS    = ar rcs
+
 # === DIRECTORIES ============================================================ #
-SRCS_DIR      = srcs
-OBJS_DIR      = objs
+
+INCS_D    = .
+SRCS_D    = .
+OBJS_D    = objs
+
 # === EXTENSIONS ============================================================= #
-CPP_EXTENSION = .cpp
-HPP_EXTENSION = .hpp
-OBJ_EXTENSION = .o
+
+CPP_EXT   = .cpp
+HPP_EXT   = .hpp
+OBJ_EXT   = .o
+
 # === FILES ================================================================== #
-NAME          = $(PROGRAM_NAME)
-INCS          = $(addsuffix $(HPP_EXTENSION), \
-                            $(CLASSES))
-SRCS          = $(addsuffix $(CPP_EXTENSION), \
-                            $(CLASSES))
-OBJS          = $(patsubst %$(CPP_EXTENSION), \
-                            $(OBJS_DIR)/$(SRCS_DIR)/%$(OBJ_EXTENSION), \
-                            $(SRCS))
-MAIN_SRC      = main$(CPP_EXTENSION)
-MAIN_OBJ      = $(patsubst %$(CPP_EXTENSION), \
-                            $(OBJS_DIR)/%$(OBJ_EXTENSION), \
-                            $(MAIN_SRC))
-LIB           = $(NAME).a
+
+CLASSES   =
+CPPFILES  = $(CLASSES)
+HPPFILES  = $(CLASSES)
+
+INCS      = $(addprefix $(INCS_D)/, \
+                        $(addsuffix $(HPP_EXT), \
+                        $(HPPFILES)))
+SRCS      = $(addprefix $(SRCS_D)/, \
+                        $(addsuffix $(CPP_EXT), \
+                        $(CPPFILES)))
+OBJS      = $(patsubst $(SRCS_D)/%$(CPP_EXT), \
+                       $(OBJS_D)/$(SRCS_D)/%$(OBJ_EXT), \
+                       $(SRCS))
+
+MAIN_CPP  = main$(CPP_EXT)
+MAIN_OBJ  = $(patsubst %$(CPP_EXT), \
+                       $(OBJS_D)/%$(OBJ_EXT), \
+                       $(MAIN_CPP))
+
 # === FLAGS ================================================================== #
-RM_FLAGS      = -rf
-MKDIR_FLAGS   = -p
-CXX_FLAGS     = -Wall -Wextra -Werror -pedantic -std=c++98
-# === PROJECT ================================================================ #
-PROGRAM_NAME  = btc
-CLASSES       = BitcoinExchange
-LIB_NAME      = $(PROGRAM_NAME).a
+
+CPP_FLAGS = -Wall -Wextra -Werror -std=c++98
+MK_FLAGS  = -p
+RM_FLAGS  = -rfv
+
 # === RULES ================================================================== #
+
 all: $(NAME)
 
-$(OBJS_DIR)/$(SRCS_DIR)/%$(OBJ_EXTENSION): %$(CPP_EXTENSION)
-	@$(MKDIR) $(MKDIR_FLAGS) $(dir $@)
-	@$(CXX) $(CXX_FLAGS) -c $< -o $@
+$(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS)
+	@$(MK) $(MK_FLAGS) $(dir $@) > /dev/null 2>&1
+	@$(CPP) $(CPP_FLAGS) -c $< -o $@ #> /dev/null 2>&1
 
-$(OBJS_DIR)/%$(OBJ_EXTENSION): %$(CPP_EXTENSION)
-	@$(MKDIR) $(MKDIR_FLAGS) $(dir $@)
-	@$(CXX) $(CXX_FLAGS) -c $< -o $@
+$(OBJS_D)/$(SRCS_D)/%$(OBJ_EXT): $(SRCS_D)/%$(CPP_EXT) $(INCS)
+	@$(MK) $(MK_FLAGS) $(dir $@) > /dev/null 2>&1
+	@$(CPP) $(CPP_FLAGS) -c $< -o $@ #> /dev/null 2>&1
 
 $(LIB): $(OBJS)
-	@$(AR_RCS) $(LIB) $(OBJS)
+	@$(AR_RCS) $(LIB) $(OBJS) > /dev/null 2>&1
 
 $(NAME): $(LIB) $(MAIN_OBJ)
-	@$(CXX) $(CXX_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
+	@$(CPP) $(CPP_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME) > /dev/null 2>&1
 
 clean:
-	@$(RM) $(RM_FLAGS) $(OBJS_DIR)
+	@$(RM) $(RM_FLAGS) $(OBJS_D)
 
 fclean: clean
 	@$(RM) $(RM_FLAGS) $(NAME) $(LIB)
