@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 17:23:24 by dcaetano          #+#    #+#              #
-#    Updated: 2025/04/11 14:51:34 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/04/11 20:27:14 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ OBJ_EXT   = .o
 
 # === FILES ================================================================== #
 
-CLASSES   =
+CLASSES   = BitcoinExchange
 CPPFILES  = $(CLASSES)
 HPPFILES  = $(CLASSES)
 
