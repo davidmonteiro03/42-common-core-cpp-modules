@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 14:42:00 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/11 20:26:30 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/12 09:28:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ std::pair<std::string, float> BitcoinExchange::__checkLine(const std::string &li
 	std::string dateStr = "", sepStr = "", valueStr = "";
 	lineSs >> dateStr >> sepStr >> valueStr;
 	if (dateStr.empty() || sepStr.empty() || valueStr.empty() || sepStr != "|")
-		throw std::invalid_argument("bad input => " + line);
+		throw std::logic_error("bad input => " + line);
 	std::stringstream dateSs(dateStr), valueSs(valueStr);
 	std::string yearStr = "", monthStr = "", dayStr = "";
 	float value = 0.f;
@@ -90,21 +90,21 @@ std::pair<std::string, float> BitcoinExchange::__checkLine(const std::string &li
 	std::getline(dateSs, dayStr);
 	valueSs >> value;
 	if (yearStr.empty() || monthStr.empty() || dayStr.empty())
-		throw std::invalid_argument("bad input => " + line);
+		throw std::logic_error("bad input => " + line);
 	std::stringstream yearSs(yearStr), monthSs(monthStr), daySs(dayStr);
 	long long int year = 0, month = 0, day = 0;
 	yearSs >> year;
 	monthSs >> month;
 	daySs >> day;
 	if (BitcoinExchange::__isValidDate(day, month, year) == false)
-		throw std::invalid_argument("bad input => " + line);
+		throw std::logic_error("bad input => " + line);
 	if (value <= 0)
-		throw std::invalid_argument("not a positive number.");
+		throw BitcoinExchange::NotAPositiveNumberException();
 	if (value >= 1000)
-		throw std::invalid_argument("too large a number.");
+		throw BitcoinExchange::TooLargeANumberException();
 	std::tm date = BitcoinExchange::__dmytotm(day, month, year);
 	std::string dateString = BitcoinExchange::__tmtostr(date);
-	return std::make_pair<std::string, float>(dateString, value);
+	return std::pair<std::string, float>(dateString, value);
 }
 
 void BitcoinExchange::readCSVFile(void)
@@ -112,7 +112,7 @@ void BitcoinExchange::readCSVFile(void)
 	const std::string databaseFilename = "data.csv";
 	std::ifstream databaseReadFile(databaseFilename.c_str());
 	if (databaseReadFile.fail())
-		throw std::invalid_argument("could not open file.");
+		throw BitcoinExchange::CouldNotOpenFileException();
 	const std::string validColumns[] = {"date", "exchange_rate"};
 	const std::size_t lenColumns = sizeof(validColumns) / sizeof(std::string);
 	for (std::size_t i = 0; i < lenColumns; i++)
@@ -123,9 +123,8 @@ void BitcoinExchange::readCSVFile(void)
 		else
 			std::getline(databaseReadFile, tmp);
 		if (tmp != validColumns[i])
-			throw std::invalid_argument("database error.");
+			throw BitcoinExchange::DatabaseErrorException();
 	}
-	std::map<std::string, float> database;
 	while (!databaseReadFile.eof())
 	{
 		std::string dateStr = "", valueStr = "";
@@ -155,11 +154,11 @@ void BitcoinExchange::readCSVFile(void)
 	}
 }
 
-void BitcoinExchange::searchInputInDatabase(const std::string &filename)
+void BitcoinExchange::searchInputInDatabase(const std::string &filename) const
 {
 	std::ifstream inputReadFile(filename.c_str());
 	if (inputReadFile.fail())
-		throw std::invalid_argument("could not open file");
+		throw BitcoinExchange::CouldNotOpenFileException();
 	const std::string validColumns[] = {"date", "value"};
 	const std::size_t lenColumns = sizeof(validColumns) / sizeof(std::string);
 	while (!inputReadFile.eof())
@@ -172,13 +171,13 @@ void BitcoinExchange::searchInputInDatabase(const std::string &filename)
 			std::string tmpColumn = "";
 			lineSs >> tmpColumn;
 			if (tmpColumn != validColumns[i])
-				throw std::invalid_argument("error in input file header.");
+				throw BitcoinExchange::InputFileWrongHeaderException();
 			if (i < lenColumns - 1)
 			{
 				std::string tmpSep = "";
 				lineSs >> tmpSep;
 				if (tmpSep != "|")
-					throw std::invalid_argument("error in input file header.");
+					throw BitcoinExchange::InputFileWrongHeaderException();
 			}
 		}
 		break;
@@ -207,7 +206,7 @@ void BitcoinExchange::searchInputInDatabase(const std::string &filename)
 				std::mktime(&date);
 			}
 			if (std::isnan(findRate))
-				throw std::invalid_argument("date is too old.");
+				throw BitcoinExchange::DateIsTooOldException();
 			std::cout.precision(std::numeric_limits<float>::digits10);
 			std::cout << parsed.first << " => " << parsed.second << " = " << parsed.second * findRate << std::endl;
 		}
@@ -218,3 +217,15 @@ void BitcoinExchange::searchInputInDatabase(const std::string &filename)
 		}
 	}
 }
+
+const char *BitcoinExchange::NotAPositiveNumberException::what() const throw() { return "not a positive number."; }
+
+const char *BitcoinExchange::TooLargeANumberException::what() const throw() { return "too large a number."; }
+
+const char *BitcoinExchange::CouldNotOpenFileException::what() const throw() { return "could not open file."; }
+
+const char *BitcoinExchange::DatabaseErrorException::what() const throw() { return "database error."; }
+
+const char *BitcoinExchange::InputFileWrongHeaderException::what() const throw() { return "input file wrong header."; }
+
+const char *BitcoinExchange::DateIsTooOldException::what() const throw() { return "date is too old."; }
