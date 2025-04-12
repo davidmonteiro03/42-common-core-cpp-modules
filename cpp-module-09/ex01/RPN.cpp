@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 09:57:20 by dcaetano          #+#    #+#             */
-/*   Updated: 2025/04/12 10:00:18 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/04/12 10:15:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,24 @@ RPN &RPN::operator=(const RPN &) { return *this; }
 
 RPN::~RPN() {}
 
-double RPN::__calculate(const std::string &op,
-						const double &a,
-						const double &b)
+bool RPN::__checkValue(const std::string &str)
+{
+	if (str.empty())
+		return false;
+	std::size_t i = 0;
+	while (i < str.size() && std::isspace(str[i]))
+		i++;
+	bool hasDigits = i < str.size() && std::isdigit(str[i]);
+	while (i < str.size() && std::isdigit(str[i]))
+		i++;
+	while (i < str.size() && std::isspace(str[i]))
+		i++;
+	return i == str.size() && hasDigits == true;
+}
+
+number_t RPN::__calculate(const std::string &op,
+						  const number_t &a,
+						  const number_t &b)
 {
 	if (op == "+")
 		return a + b;
@@ -42,7 +57,7 @@ double RPN::__calculate(const std::string &op,
 void RPN::execute(const std::string &expr)
 {
 	std::stringstream exprSs(expr);
-	std::stack<double> mstack;
+	std::stack<number_t> mstack;
 	while (!exprSs.eof())
 	{
 		std::string arg = "";
@@ -51,22 +66,23 @@ void RPN::execute(const std::string &expr)
 		{
 			if (mstack.size() < 2)
 				throw std::exception();
-			double b = mstack.top();
+			number_t b = mstack.top();
 			mstack.pop();
-			double a = mstack.top();
+			number_t a = mstack.top();
 			mstack.pop();
 			mstack.push(RPN::__calculate(arg, a, b));
 			continue;
 		}
+		if (RPN::__checkValue(arg) == false)
+			throw std::exception();
 		std::stringstream argSs(arg);
-		double value = std::numeric_limits<double>::quiet_NaN();
-		argSs >> value;
-		if (std::isnan(value))
+		number_t value = std::numeric_limits<number_t>::quiet_NaN();
+		if (!(argSs >> value))
 			throw std::exception();
 		mstack.push(value);
 	}
 	if (mstack.size() != 1)
 		throw std::exception();
-	std::cout.precision(std::numeric_limits<double>::digits10);
+	std::cout.precision(std::numeric_limits<number_t>::digits10);
 	std::cout << mstack.top() << std::endl;
 }
