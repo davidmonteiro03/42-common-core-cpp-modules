@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/01 17:23:24 by dcaetano          #+#    #+#              #
-#    Updated: 2025/04/12 14:43:00 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/04/14 12:31:32 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ OBJ_EXT   = .o
 
 # === FILES ================================================================== #
 
-CLASSES   =
+CLASSES   = PmergeMe
 CPPFILES  = $(CLASSES)
 HPPFILES  = $(CLASSES)
 
@@ -67,11 +67,11 @@ all: $(NAME)
 
 $(OBJS_D)/%$(OBJ_EXT): %$(CPP_EXT) $(INCS)
 	@$(MK) $(MK_FLAGS) $(dir $@) > /dev/null 2>&1
-	@$(CPP) $(CPP_FLAGS) -c $< -o $@ #> /dev/null 2>&1
+	@$(CPP) $(CPP_FLAGS) -c $< -o $@ > /dev/null 2>&1
 
 $(OBJS_D)/$(SRCS_D)/%$(OBJ_EXT): $(SRCS_D)/%$(CPP_EXT) $(INCS)
 	@$(MK) $(MK_FLAGS) $(dir $@) > /dev/null 2>&1
-	@$(CPP) $(CPP_FLAGS) -c $< -o $@ #> /dev/null 2>&1
+	@$(CPP) $(CPP_FLAGS) -c $< -o $@ > /dev/null 2>&1
 
 $(LIB): $(OBJS)
 	@$(AR_RCS) $(LIB) $(OBJS) > /dev/null 2>&1
