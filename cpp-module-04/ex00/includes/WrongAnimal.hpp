@@ -21,12 +21,12 @@ public:
 	WrongAnimal(const std::string &);
 	WrongAnimal(const WrongAnimal &);
 	WrongAnimal &operator=(const WrongAnimal &);
-	virtual ~WrongAnimal();
+	~WrongAnimal();
 
 	const std::string &getType(void) const;
 	void setType(const std::string &);
 
-	virtual void makeSound(void) const;
+	void makeSound(void) const;
 
 protected:
 	std::string _type;
